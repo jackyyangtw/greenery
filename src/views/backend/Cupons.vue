@@ -118,7 +118,7 @@
 
 <script>
 import $ from "jquery"
-import Switchpages from "./Switchpages"
+import Switchpages from "@/components/Switchpages"
 export default {
   data(){
     return{

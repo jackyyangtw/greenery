@@ -7,21 +7,24 @@ import App from './App.vue'
 import router from './router'
 import "./bus"
 import filterCurrency from "./filters/currency"
+import filterDate from "./filters/date"
 import VeeValidate from 'vee-validate'
 import zhTW from 'vee-validate/dist/locale/zh_TW'
 import VueI18n from 'vue-i18n'
 
+//將跨域的cookie存入vue的伺服器
+axios.defaults.withCredentials = true;
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios);
 Vue.use(VueI18n)
 Vue.component('Loading', Loading);
 Vue.filter('currency', filterCurrency)
+Vue.filter('date', filterDate)
 
 
 
-//將跨域的cookie存入vue的伺服器
-axios.defaults.withCredentials = true;
+
 
 const i18n = new VueI18n({
   locale: 'zhTW'

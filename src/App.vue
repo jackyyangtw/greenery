@@ -15,6 +15,7 @@ header和footer
           <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
           <span class="sr-only">unread messages</span>
         </button>
+        <router-link class="navbar-brand" to="/login">登入</router-link>
         <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px"
           data-offset="400">
           <h6>已選擇商品</h6>

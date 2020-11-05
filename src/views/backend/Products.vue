@@ -171,7 +171,7 @@
 <script>
 //沒載入會出錯
 import $ from 'jquery'
-import Switchpages from "./Switchpages"
+import Switchpages from "@/components/Switchpages"
 
 //可匯出供其他元件使用
 export default {
@@ -270,7 +270,7 @@ export default {
           console.log('更新失敗')          
         }
       })
-      this.$http.delet(api).then((response)=>{
+      this.$http.delete(api).then((response)=>{
         console.log(response)
       })     
     },

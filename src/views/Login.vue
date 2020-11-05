@@ -45,6 +45,12 @@ export default {
         console.log('這是response.data',response.data)
         if(response.data.success){
           vm.$router.push('/admin/products')
+          //cookie值
+          const token = response.data.token;
+          const expired = response.data.expired;
+          console.log(token, expired);
+          //expired要轉成timestamp  new Date(expired)
+          document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
         }
       })      
     }

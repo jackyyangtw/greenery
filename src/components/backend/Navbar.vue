@@ -25,7 +25,7 @@
       />
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap" @click.prevent="signout">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link" href="#">登出</a>
         </li>
       </ul>
     </nav>

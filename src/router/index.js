@@ -1,14 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+//frontend
 import Home from '@/views/Home'
 import About from '@/views/About'
-import Login from '@/components/pages/Login'
-import Dashboard from '@/components/Dashboard'
-import Products from '@/components/pages/Products'
-import CustomerOrders from '@/components/pages/CustomerOrders'
-import CustomerCheckout from '@/components/pages/CustomerCheckout'
-import Orders from '@/components/pages/Orders'
-import Cupons from '@/components/pages/Cupons'
+import Login from '@/views/Login'
+
+//backend
+import Dashboard from '@/views/backend/Dashboard'
+import Products from '@/views/backend/Products'
+import CustomerOrders from '@/views/backend/CustomerOrders'
+import CustomerCheckout from '@/views/backend/CustomerCheckout'
+import Orders from '@/views/backend/Orders'
+import Cupons from '@/views/backend/Cupons'
 
 
 Vue.use(VueRouter);

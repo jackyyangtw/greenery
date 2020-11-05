@@ -15,14 +15,18 @@
 </template>    
 
 <script>
-import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
-import Alert from "./AlertMessage";
+import Sidebar from "@/components/backend/Sidebar";
+import Navbar from "@/components/backend/Navbar";
+import Alert from "@/components/AlertMessage";
 export default {
   components:{
     Sidebar,
     Navbar,
     Alert
+  },
+  created(){
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    this.$http.defaults.headers.common.Authorization = `${token}`;
   }
 }
 </script>
