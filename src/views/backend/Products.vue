@@ -270,9 +270,9 @@ export default {
           console.log('更新失敗')          
         }
       })
-      this.$http.delete(api).then((response)=>{
-        console.log(response)
-      })     
+      // this.$http.delete(api).then((response)=>{
+      //   console.log(response)
+      // })     
     },
     uploadFile(){
       console.log(this)

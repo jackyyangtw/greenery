@@ -1,4 +1,3 @@
-header和footer
 
 
 <template>
@@ -24,7 +23,7 @@ header和footer
               <tr v-for="item in cart.carts" :key="item.id">
                 <td class="align-middle text-center" v-if="cart.carts.length">
                   <a href="#" class="text-muted" @click.prevent="removeCart(item.id)">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <i class="fas fa-trash" aria-hidden="true"></i>
                   </a>
                 </td>
                 <td class="align-middle">{{ item.product.title }}</td>
@@ -72,39 +71,17 @@ header和footer
 </template>
 
 <script>
+import { mapGetters,mapActions } from 'vuex'
 export default {
   name: 'App',
-  data() {
-    return {
-      cart: {
-        carts: [],
-      },
-      isLoading: false,
-    };
-  },
+  computed: {
+    isLoading(){
+      return this.$store.state.isLoading
+    },
+    ...mapGetters("cartsModules",['cart'])
+  },  
   methods: {
-    getCart() {
-      const vm = this;
-      vm.isLoading = true;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      this.$http.get(url).then((response) => {
-        if (response.data.data.carts) {
-          vm.cart = response.data.data;
-        }
-        vm.isLoading = false;
-        console.log('取得購物車', response.data.data);
-      });
-    },
-    removeCart(id) {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
-      vm.isLoading = true;
-      this.$http.delete(url).then((response) => {
-        vm.isLoading = false;
-        vm.getCart();
-        console.log('刪除購物車項目', response);
-      });
-    },
+    ...mapActions('cartsModules',['removeCart','getCart']),
   },
   created() {
     this.getCart();

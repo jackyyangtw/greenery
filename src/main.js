@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
@@ -11,6 +12,7 @@ import filterDate from "./filters/date"
 import VeeValidate from 'vee-validate'
 import zhTW from 'vee-validate/dist/locale/zh_TW'
 import VueI18n from 'vue-i18n'
+import store from './store'
 
 //將跨域的cookie存入vue的伺服器
 axios.defaults.withCredentials = true;
@@ -18,6 +20,7 @@ axios.defaults.withCredentials = true;
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios);
 Vue.use(VueI18n)
+Vue.use(Vuex)
 Vue.component('Loading', Loading);
 Vue.filter('currency', filterCurrency)
 Vue.filter('date', filterDate)
@@ -39,6 +42,7 @@ Vue.use(VeeValidate, {
 
 new Vue({
   router,
+  store,
   i18n,
   render: h => h(App)
 }).$mount('#app')
