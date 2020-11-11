@@ -1,14 +1,14 @@
-
-
 <template>
   <div id="app">
     <nav class="navbar navbar-light bg-light">
       <router-link class="navbar-brand" to="/">
-        <i class="fa fa-heart text-info" aria-hidden="true"></i>
         Greenery
       </router-link>
+      <router-link class="navbar-brand mr-4" to="/login">首頁</router-link>
+      <router-link class="navbar-brand mr-4" to="/login">所有商品</router-link>
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
       <div class="dropdown ml-auto">
+
         <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
           <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
           <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>

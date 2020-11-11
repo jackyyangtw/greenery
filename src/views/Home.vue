@@ -92,7 +92,9 @@ export default {
   },
   methods: {
     ...mapActions('productsModules',['getProducts']),
-    ...mapActions('cartsModules',['addtoCart']),
+    addtoCart(id, qty = 1) {
+      this.$store.dispatch('cartsModules/addtoCart',{id,qty})
+    },
   },
   created() {
     this.getProducts();
