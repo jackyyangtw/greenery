@@ -27,7 +27,7 @@ export default {
       state.isNew = payload
     },
     DUEDATE(state,payload){
-      state.isNew = payload
+      state.due_date = payload
     }
   },
   actions: {
@@ -45,21 +45,20 @@ export default {
     openModal(context,{isNew, item}) {
       $('#couponModal').modal('show');
       context.commit('ISNEW',isNew)
-      
       if (isNew) {
         let Coupon = {}
         context.commit('TEMPCOUPON',Coupon)
       } else {
-        const coupon = {
+        const coupon = Object.assign({
           title: item.title,
           percent: item.percent,
           due_date: item.due_date,
           code: item.code,
           is_enabled: item.is_enabled,
-        };
-        const dateAndTime = new Date(context.state.tempCoupon.due_date * 1000).toISOString().split('T');
-        context.commit('TEMPCOUPON',coupon)
+        });
+        context.commit('TEMPCOUPON',coupon);
         //轉成iso格式，方便使用者閱讀，否則都不顯示
+        const dateAndTime = new Date(context.state.tempCoupon.due_date * 1000).toISOString().split('T');
         context.commit('DUEDATE',dateAndTime[0])
       }
     },
@@ -76,15 +75,15 @@ export default {
         $('#couponModal').modal('hide');
         if (response.data.success) {
           if (httpMethod === 'post') {
-            context.dispatch('getCoupons');
+            context.dispatch('getCoupon');
           } else {
-            context.dispatch('getCoupons');
+            context.dispatch('getCoupon');
           }
         } else if (!response.data.success) {
           if (httpMethod === 'post') {
-            context.dispatch('getCoupons');
+            context.dispatch('getCoupon');
           } else {
-            context.dispatch('getCoupons');
+            context.dispatch('getCoupon');
           }
         }
       });

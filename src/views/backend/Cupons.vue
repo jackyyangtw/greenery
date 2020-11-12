@@ -139,7 +139,10 @@ export default {
     ...mapGetters('couponsModules',['pagination','coupons','tempCoupon','isNew','due_date'])
   },
   methods: {
-    ...mapActions("couponsModules",['getCoupon','updateCoupon','openDelete','openDeleteSure']),
+    ...mapActions("couponsModules",['updateCoupon','openDelete','openDeleteSure']),
+    getCoupon(page = 1){
+      this.$store.dispatch('couponsModules/getCoupon',page = 1)
+    },
     openModal(isNew, item){
       this.$store.dispatch('couponsModules/openModal',{isNew, item})
     }

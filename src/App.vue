@@ -1,11 +1,12 @@
+1.購物車列表的padding要再大一點看起來比較舒服
 <template>
   <div id="app">
     <nav class="navbar navbar-light bg-light">
-      <router-link class="navbar-brand" to="/">
+      <router-link class="navbar-brand" to="/about">
         Greenery
       </router-link>
-      <router-link class="navbar-brand mr-4" to="/login">首頁</router-link>
-      <router-link class="navbar-brand mr-4" to="/login">所有商品</router-link>
+      <router-link class="navbar-brand ml-4" to="/about">關於我們</router-link>
+      <router-link class="navbar-brand ml-2" to="/">所有商品</router-link>
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
       <div class="dropdown ml-auto">
 
@@ -28,9 +29,17 @@
                 </td>
                 <td class="align-middle">{{ item.product.title }}</td>
                 <td class="align-middle">{{ item.qty }}{{item.product.unit}}</td>
-                <td class="align-middle text-right">{{item.total}}</td>
+                <td class="align-middle text-right">NT${{item.total}}</td>
               </tr>
             </tbody>
+            <tfoot class="mt-4">
+              <tr>
+                <td class="text-right">總計</td>
+                <td></td>
+                <td></td>
+                <td class="text-right">NT${{ cart.final_total }}</td>
+              </tr>
+            </tfoot>
           </table>
           <button class="btn btn-primary btn-block">
             <i class="fa fa-cart-plus" aria-hidden="true"></i> 結帳去
@@ -47,7 +56,10 @@
       </div>
     </div>
     <Loading :active.sync="isLoading"></Loading>
-    <router-view/>
+    <!-- 轉跳頁面效果 -->
+    <transition name="page" mode="out-in">
+      <router-view key="$route.path"/>
+    </transition>
     <footer class="bg-light text-muted py-5">
       <div class="container">
         <ul class="list-inline text-center">
@@ -64,7 +76,6 @@
             <a class="text-info" href="#">About</a>
           </li>
         </ul>
-        <p class="text-center">Made with Bootstrap4</p>
       </div>
     </footer>
   </div>
@@ -89,45 +100,53 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="sass">
 @import "~bootstrap/scss/bootstrap";
-.jumbotron-bg {
+// *
+//   border: solid 1px
+.jumbotron-bg 
   /* banners.png */
-  background-image: url('./assets/header.jpg');
-  background-size: cover;
-  background-position: center center;
-  min-height: 400px;
-}
+  background-image: url('./assets/header.jpg')
+  background-size: cover
+  background-position: center center
+  min-height: 400px
+
 /* 半透明背景 */
-.bg-lighter {
-  background-color: rgba(255, 255, 255, .45);
-}
+.bg-lighter 
+  background-color: rgba(255, 255, 255, .45)
+
 /* 購物車按鈕 */
-.btn-cart {
-  background-color: transparent;
-  position: relative;
-}
+.btn-cart 
+  background-color: transparent
+  position: relative
+
 /* 購物車按鈕定位 */
-.btn-cart .badge {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-}
-.main-content {
+.btn-cart .badge 
+  position: absolute
+  top: 1px
+  right: 1px
+
+.main-content 
   min-height: calc(100vh - 56px - 176px)
-}
-.box-shadow {
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, .05);
-  transition: .3s linear;
-}
-.box-shadow:hover {
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, .08);
-}
-.dropdown-menu-right {
-  right: 0;
-  left: auto;
-}
-.alert-rounded {
-  border-radius: 50px;
-}
+
+.box-shadow 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .05)
+  transition: .3s linear
+
+.box-shadow:hover 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, .08)
+
+.dropdown-menu-right 
+  right: 0
+  left: auto
+
+.alert-rounded 
+  border-radius: 50px
+
+//轉跳頁面效果
+.page-enter-active,.page-leave-active
+  transition: 0.5s
+.page-enter,.page-leave-to
+  opacity: 0
+
 </style>

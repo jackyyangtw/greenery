@@ -1,4 +1,7 @@
 主要商品頁面
+1.點擊照片打開詳細商品資訊
+2.點擊加入購物車選擇商品數量
+3.商品介紹的字可以多一點
 <template>
   <div>
     <div class="container main-content mb-3">
@@ -36,10 +39,6 @@
                 </div>
               </div>
             </form>
-            <button class="btn btn-outline-primary ml-auto" type="button"
-              @click="getProducts">
-              重新取得資料
-            </button>
           </div>
           <!-- content -->
           <div class="tab-pane" id="list-gift">
@@ -51,6 +50,7 @@
                   <div class="card-body">
                     <h4 class="card-title">{{ item.title }}</h4>
                     <p class="card-text text-left">{{ item.content }}</p>
+                    <p class="card-text text-right">{{ item.origin_price }}元/{{item.unit}}</p>
                   </div>
                   <div class="card-footer border-top-0 bg-white">
                     <button class="btn btn-outline-secondary btn-block btn-sm"
@@ -110,8 +110,8 @@ export default {
 </style>
 
 <style lang="sass">
-// *
-//   border: solid 1px
+*
+  border: solid 1px
 img
   height: 350px
   // 讓圖片不會拉伸

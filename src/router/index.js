@@ -32,6 +32,14 @@ export default new VueRouter({
       component: Home,
     },
     {
+      //元件呈現名稱
+      name:'About',
+      //對應虛擬路徑(網址上的)
+      path:'/about',
+      //對應元件
+      component: About,
+    },
+    {
       path: '/login',
       name:'Login',
       component: Login
