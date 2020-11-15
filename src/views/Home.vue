@@ -46,7 +46,7 @@
               <!-- 商品 -->
               <div class="col-md-4 mb-4" v-for="(item) in filterData" :key="item.id">
                 <div class="card border-0 box-shadow text-center h-100 img-fluid">
-                  <img class="card-img-top " :src="item.imageUrl" alt="Card image cap">
+                  <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
                   <div class="card-body">
                     <h4 class="card-title">{{ item.title }}</h4>
                     <p class="card-text text-left">{{ item.content }}</p>
@@ -62,6 +62,26 @@
               </div>
             </div>
           </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -69,6 +89,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import { mapGetters,mapActions } from 'vuex'
 export default {
   name: 'Home',
@@ -95,6 +116,9 @@ export default {
     addtoCart(id, qty = 1) {
       this.$store.dispatch('cartsModules/addtoCart',{id,qty})
     },
+    openModal(){
+      $('#exampleModalLong').modal('show')
+    }
   },
   created() {
     this.getProducts();
@@ -110,11 +134,32 @@ export default {
 </style>
 
 <style lang="sass">
-*
-  border: solid 1px
+@import "~bootstrap/scss/bootstrap";
+@mixin fcenter
+  display: flex
+  justify-content: center
+  align-items: center
+// *
+//   border: solid 1px
 img
   height: 350px
   // 讓圖片不會拉伸
   object-fit: cover
-@import "~bootstrap/scss/bootstrap";
+.priductPic
+  cursor: pointer
+figure
+  position: relative
+figcaption
+  min-width: 200px
+  opacity: 0
+  background-color: rgba(white,0.7)
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  width: 100%
+  +fcenter
+  flex-direction: column
+  transition: 0.3s 
 </style>

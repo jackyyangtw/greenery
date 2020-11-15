@@ -55,6 +55,7 @@ export default {
           due_date: item.due_date,
           code: item.code,
           is_enabled: item.is_enabled,
+          id: item.id
         });
         context.commit('TEMPCOUPON',coupon);
         //轉成iso格式，方便使用者閱讀，否則都不顯示
@@ -62,29 +63,18 @@ export default {
         context.commit('DUEDATE',dateAndTime[0])
       }
     },
-    updateCoupon(context, tempCoupon) {
-      const coupon = tempCoupon;
-      context.commit('TEMPCOUPON', coupon);
+    updateCoupon(context) {
       let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`;
       let httpMethod = 'post';
       if (!context.state.isNew) {
-        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${context.state.tempCoupon.id}`;
-        httpMethod = 'put';
+      api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${context.state.tempCoupon.id}`;
+      httpMethod = 'put';
       }
       axios[httpMethod](api, { data: context.state.tempCoupon }).then((response) => {
         $('#couponModal').modal('hide');
         if (response.data.success) {
-          if (httpMethod === 'post') {
-            context.dispatch('getCoupon');
-          } else {
-            context.dispatch('getCoupon');
-          }
-        } else if (!response.data.success) {
-          if (httpMethod === 'post') {
-            context.dispatch('getCoupon');
-          } else {
-            context.dispatch('getCoupon');
-          }
+          $('#couponModal').modal('hide');
+          context.dispatch('getCoupon');
         }
       });
     },

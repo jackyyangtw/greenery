@@ -39,11 +39,13 @@ export default {
       //post將用戶資料傳入
       //vm.user 帳號密碼
       //response 後端回傳的資料
+      this.$store.dispatch('updateLoading',true)
       this.$http.post(api,vm.user).then((response)=>{
         console.log('這是response',response)
         console.log('這是vm.user',vm.user)
         console.log('這是response.data',response.data)
         if(response.data.success){
+          vm.$store.dispatch('updateLoading',false)
           vm.$router.push('/admin/products')
           //cookie值
           const token = response.data.token;

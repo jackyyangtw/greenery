@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-1 mt--1 shadow"
     >
       <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#"
         >管理者後台</a
