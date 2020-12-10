@@ -47,6 +47,8 @@ export default{
   },
   mutations: {
     CART(state,payload){
+      //cart的陣列資料
+      console.log('CART的payload',payload)
       state.cart = payload
     }
   },

@@ -45,7 +45,7 @@ export default{
       //商品陣列
       console.log("這是CATEGORIES的payload",payload)
       payload.forEach((item) => {
-        //將item.category存入categories，產生一個物件裝三組字串
+        //將item.category存入categories
         categories.add(item.category);
       });
       console.log("forEach後的categories",categories)

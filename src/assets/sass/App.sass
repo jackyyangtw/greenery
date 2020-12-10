@@ -1,0 +1,87 @@
+
+
+@mixin ipad
+  @media(max-width: 768px)
+    @content
+// *
+//   border: solid 1px
+.jumbotron-bg 
+  /* banners.png */
+  background-image: url('./assets/header.jpg')
+  background-size: cover
+  background-position: center center
+  min-height: 400px
+nav
+  z-index: 10
+  h6
+    font-size: 18px
+  td
+    padding: 1em 0
+.hamburger
+  display: none
++ipad
+  nav
+    .hamburger
+      display: inline-block
+      .hamburg_list
+        position: absolute
+        left: 0
+        right: 0
+        background-color: #fff
+        width: 100vw
+        li
+          text-align: center
+          padding: 0.5em
+    .desktop
+      display: none
+
+/* 半透明背景 */
+.bg-lighter 
+  background-color: rgba(255, 255, 255, .45)
+
+/* 購物車按鈕 */
+.btn-cart 
+  background-color: transparent
+  position: relative
+
+/* 購物車按鈕定位 */
+.btn-cart .badge 
+  position: absolute
+  top: 1px
+  right: 1px
+
+
+.main-content 
+  min-height: calc(100vh - 56px - 176px)
+
+.box-shadow 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .05)
+  transition: .3s linear
+
+.box-shadow:hover 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, .08)
+
+.dropdown-menu-right 
+  right: 0
+  left: auto
+
+.alert-rounded 
+  border-radius: 50px
+
+//轉跳頁面效果
+.page-enter-active,.page-leave-active
+  transition: 0.5s
+.page-enter,.page-leave-to
+  opacity: 0
+footer
+  background-color: lighten(grey,40)
+  ul
+    display: flex
+    justify-content: center
+    align-items: center
+  .ig
+    color: #F783AC
+  i
+    font-size: 30px
+    margin: 0 0.25em
+  

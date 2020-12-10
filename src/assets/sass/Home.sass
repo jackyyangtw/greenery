@@ -1,0 +1,386 @@
+@import '@/assets/sass/_reset.sass'
+  
+$bg_white: #faf5e4
+$bg_lightGreen: #2c786c
+$bg_darkGreen: #004445
+$bg_yellow: #e8af13
+$font_white: #faf5e4
+$item_darkGreen: #004445
+$item_lightGreen: #2c786c
+$item_yellow: #e8af13
+$item_blue: #4F98CA
+$item_white: darken(#eee,8)
+
+@mixin ipad
+  @media(max-width: 768px)
+    @content
+@mixin iphone8plus
+	@media(max-width: 414px)
+		@content
+    
+@mixin fcenter
+  display: flex
+  justify-content: center
+  align-items: center
+
+.section_padding
+  padding: 1em
+
+h1,h2,h3
+  font-weight: 700
+  margin: 1em 0
+h1
+  font-size: 48px
+h2
+  font-size: 30px
+h3
+  font-size: 20px
+p
+  font-size: 18px
+  margin-bottom: 1em
+@include ipad
+  h2
+    font-size: 26px
+  h3
+    font-size: 18px
+
+
+.wrap
+  max-width: 1200px
+  margin: 0 auto
+#bugQue
+  padding-top: 15%  
+  background-color: $bg_white
+  position: relative
+  overflow: hidden
+  .title
+    +fcenter
+    margin-bottom: 15%
+    @include ipad
+      flex-direction: column-reverse
+
+  .content
+    margin-bottom: 10em
+    position: relative
+    .spaceBetween
+      display: flex
+      justify-content: space-around
+      align-items: center
+    .ant
+      max-width: 200px
+      position: relative
+      transform: translateX(-50%)
+      left: 50%
+  .text
+    text-align: center
+    margin-bottom: 5%
+    h2
+      margin: 1em 0 0.5em 0
+    p
+      font-size: 20px
+    .earth
+      color: $item_lightGreen
+      font-size: 100px 
+  .mountains
+    position: relative
+    bottom: -3em
+    display: flex
+    justify-content: center
+    align-items: center
+    i
+      position: relative
+      bottom: 0
+      color: $item_lightGreen
+    .m
+      font-size: 180px
+      margin-top: 0.25em
+      margin-left: 0.5em
+    .s
+      font-size: 130px
+      margin-left: -0.25em
+      margin-top: 0.8em
+    .l
+      font-size: 250px
+      margin-left: 0.5em
+    @include ipad
+      .last,.l
+        display: none
+#bugprevent
+  padding: 3em
+  background-color: $bg_lightGreen
+  .title
+    text-align: center
+    color: $font_white
+    .subtitle
+      margin-top: -1em 
+      opacity: 0.8
+  .cards
+    margin-top: 2em
+    cursor: pointer
+    .card
+      background-color: $bg_white
+      max-width: 60%
+      margin: auto
+      transition: 0.3s
+      &:hover
+        box-shadow: 10px 10px 10px rgba(black,0.3)
+        transform: translate(-10px,-10px)
+      img
+        height: 250px
+      .text
+        padding: 1em
+        line-height: 1.8
+        text-align: center
+        .middel
+          margin: 1em 0 
+          font-weight: 400
+      @include ipad
+        width: 80%
+        margin: 0 auto
+#nature
+  background-color: $bg_white
+  position: relative
+  overflow: hidden
+  .sky
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .sun
+      color: $item_yellow
+      font-size: 200px
+    .cloudbox
+      +fcenter
+      .cloud
+        font-size: 150px
+        color: $item_white
+        margin: 0 10px
+  @include ipad
+    .sky
+      .sun
+        font-size: 100px
+      .cloudbox
+        .cloud
+          font-size: 80px
+        .cloud1,.cloud2
+          display: none
+  .content
+    text-align: center
+    margin-top: 2em
+    margin-bottom: 5em
+
+    .icons
+      +fcenter
+      .water
+        color: $item_blue
+      .fish
+        color: $item_yellow
+      .bug
+        color: $item_darkGreen
+      i
+        font-size: 80px
+        margin: 0 0.5em
+    h2
+      margin-top: 2em
+    @include ipad
+      margin-top: 8em
+      .icons
+        i
+          font-size: 60px
+  .trees
+    color: $item_lightGreen
+    position: relative
+    bottom: -1.5em
+    +fcenter
+    i
+      font-size: 100px
+      margin-right: 0.9em
+    .m
+      margin-top: 10px
+      font-size: 80px
+    .s
+      margin-top: 38px
+      font-size: 50px
+#danger
+  background-color: $bg_lightGreen
+  +fcenter
+  padding: 3em 1em 
+  img
+    width: 100%
+  h2
+    color: $font_white
+  @include ipad
+    flex-direction: column
+    h2
+      margin-top: 2em
+#example
+  padding: 2em
+  background-color: $bg_darkGreen
+  .title
+    h2
+      text-align: center
+      color: $font_white
+      margin-bottom: 1em
+  .content
+    width: 90%
+    margin: 0 auto
+    +fcenter
+    margin-bottom: 3em
+    color: $font_white
+    line-height: 2
+    img
+      max-width: 40%
+      margin-right: 1em
+      box-shadow: 10px 10px 10px rgba(black,0.3)
+      margin: 0 auto
+    .text
+      padding: 1em
+      background-color: darken($bg_yellow,10)
+      box-shadow: 10px 10px 10px rgba(black,0.3)
+      transform: translateX(-5%)
+      p
+        opacity: 0.9
+    @include ipad
+      flex-direction: column
+      img
+        max-width: 90%
+      .text
+        transform: translateX(0px)
+        margin-top: 1em
+#copperIntro
+  background-color: $bg_yellow
+  padding: 3em 1em
+  .title
+    text-align: center
+    margin-bottom: 5em
+    i
+      font-size: 80px
+  .intro
+    margin: 0 auto
+    max-width: 60%
+    text-align: center
+    line-height: 1.8
+    p
+      text-align: left
+    @include ipad
+      max-width: 80%
+#testTitle
+  text-align: center
+  background-color: $bg_white
+  padding: 15% 0
+  @include ipad
+    padding: 15% 10%
+    h2
+      margin-top: 3em
+  .icons
+    i
+      font-size: 60px
+      margin: 1%
+#test
+  background-color: $bg_yellow
+  .title
+    text-align: center
+  .contents
+    display: flex
+    justify-content: space-around
+    align-items: center
+    .content
+      max-width: 30%
+      line-height: 1.8
+      margin: 1%
+      position: relative
+      img
+        box-shadow: 10px 10px 10px rgba(black,0.3)
+        margin-bottom: 1em
+      .text
+        box-shadow: 10px 10px 10px rgba(black,0.3)
+        background-color: $bg_white
+        padding: 0.5em 1em
+        border-radius: 5px
+        h2
+          text-align: center
+    @include ipad
+      flex-direction: column
+      .content
+        max-width: 80%
+        margin-bottom: 3em
+
+#copperProductTitle
+  background-color: $bg_white
+  overflow: hidden
+  .text
+    padding-top: 3em
+    text-align: center
+    margin-bottom: 5%
+    h2
+      margin: 1em 0 0.5em 0
+    p
+      font-size: 20px
+    .earth
+      color: $item_lightGreen
+      font-size: 100px 
+  .mountains
+    position: relative
+    bottom: -3em
+    +fcenter
+    i
+      color: $item_lightGreen
+    .m
+      font-size: 180px
+      margin-left: 0.5em
+      margin-top: 0.25em
+    .s
+      font-size: 130px
+      margin-left: -0.25em
+      margin-top: 0.7em
+    .l
+      font-size: 250px
+      margin-left: 0.5em
+    @include ipad
+      .last,.l
+        display: none
+#copperProduct
+  padding: 3em
+  background-color: $bg_lightGreen
+  .title
+    text-align: center
+    color: $font_white
+    h2
+      margin: 0
+    .subtitle
+      opacity: 0.8
+  .cards
+    margin-top: 2em
+    cursor: pointer
+    .card
+      background-color: $bg_white
+      line-height: 1.8
+      max-width: 60%
+      margin: auto
+      transition: 0.3s
+      &:hover
+        box-shadow: 10px 10px 10px rgba(black,0.3)
+        transform: translate(-10px,-10px)
+      img
+        height: 250px
+      .text
+        padding: 0 0.5em 0.5em 0.5em
+        text-align: center
+        h2
+          margin-top: 0.5em
+        .middel
+          margin: 1em 0 
+          font-weight: 400
+      @include ipad
+        width: 80%
+        margin: 0 auto
+
+// animate
+.animated_fadeIn
+  opacity: 0
+  transform: translateY(50px)
+  transition: 1s 
+.fadeIn
+  opacity: 1
+  transform: translateY(0px)
+
+

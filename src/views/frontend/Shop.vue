@@ -1,14 +1,13 @@
-主要商品頁面
-1.點擊照片打開詳細商品資訊
-2.點擊加入購物車選擇商品數量
-3.商品介紹的字可以多一點
+增加modal描述!
+增加類別的商品數量
+加入eventbus效果
 <template>
   <div>
-    <div class="container main-content mb-3">
+    <div class="container main-content mb-3 mt-3">
       <div class="row">
         <div class="col-md-3">
           <!-- 左側選單 (List group) -->
-          <div class="list-group sticky-top">
+          <div class="list-group">
             <a class="list-group-item list-group-item-action"
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
@@ -44,11 +43,11 @@
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
-              <div class="col-md-4 mb-4" v-for="(item) in filterData" :key="item.id">
+              <div class="col-md-4 mb-4 card" v-for="(item) in filterData" :key="item.id">
                 <div class="card border-0 box-shadow text-center h-100 img-fluid">
                   <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
-                  <div class="card-body">
-                    <h4 class="card-title">{{ item.title }}</h4>
+                  <div class="card-body card_text">
+                    <h3 class="card-title">{{ item.title }}</h3>
                     <p class="card-text text-left">{{ item.content }}</p>
                     <p class="card-text text-right">{{ item.origin_price }}元/{{item.unit}}</p>
                   </div>
@@ -67,13 +66,13 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  ...
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -113,6 +112,7 @@ export default {
   },
   methods: {
     ...mapActions('productsModules',['getProducts']),
+    //帶多個參數必須使用dispatch
     addtoCart(id, qty = 1) {
       this.$store.dispatch('cartsModules/addtoCart',{id,qty})
     },
@@ -130,36 +130,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
 
 <style lang="sass">
-@import "~bootstrap/scss/bootstrap";
-@mixin fcenter
-  display: flex
-  justify-content: center
-  align-items: center
-// *
-//   border: solid 1px
-img
-  height: 350px
-  // 讓圖片不會拉伸
-  object-fit: cover
-.priductPic
-  cursor: pointer
-figure
-  position: relative
-figcaption
-  min-width: 200px
-  opacity: 0
-  background-color: rgba(white,0.7)
-  position: absolute
-  top: 0
-  left: 0
-  bottom: 0
-  right: 0
-  width: 100%
-  +fcenter
-  flex-direction: column
-  transition: 0.3s 
+@import '@/assets/sass/Shop.sass'
 </style>

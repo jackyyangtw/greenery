@@ -2,6 +2,7 @@
 //參考 vueshop
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <div class="text-right mb-4">
       <button class="btn btn-primary" @click="openModal(true)">建立優惠券</button>
     </div>
@@ -125,6 +126,16 @@ export default {
   components: {
     Switchpages
   },
+  data(){
+    return {
+      coupons: [],
+      pagination: {},
+      tempCoupon: {},
+      isNew: false,
+      isLoading: false,
+      due_date: new Date(),
+    }
+  },
   watch: {
     //監看取得的時間，轉換成timestamp格式，可排序
     due_date(){
@@ -135,71 +146,61 @@ export default {
       vm.tempCoupon.due_date = timeStamp
     }
   },
-  computed: {
-    ...mapGetters('couponsModules',['pagination','coupons','tempCoupon','isNew','due_date'])
-  },
   methods: {
-    ...mapActions("couponsModules",['updateCoupon','openDelete','openDeleteSure']),
     getCoupon(page = 1){
-      this.$store.dispatch('couponsModules/getCoupon',page = 1)
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`
+      vm.isLoading = true
+      this.$http.get(api).then((response)=>{
+        console.log(response.data)
+        vm.coupons = response.data.coupons
+        vm.isLoading = false
+        //分頁資訊
+        vm.pagination = response.data.pagination
+      })
     },
-    openModal(isNew, item){
-      this.$store.dispatch('couponsModules/openModal',{isNew, item})
+    openModal(isNew, item) {
+      const vm = this;
+      $('#couponModal').modal('show');
+      vm.isNew = isNew;
+      if (vm.isNew) {
+        vm.tempCoupon = {};
+      } else {
+        vm.tempCoupon = Object.assign({}, item);
+        //轉成iso格式，方便使用者閱讀，否則都不顯示
+        const dateAndTime = new Date(vm.tempCoupon.due_date * 1000).toISOString().split('T');
+        vm.due_date = dateAndTime[0];
+      }
+    },
+    updateCoupon(){
+      const vm = this
+      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`
+      let apiMethod = "post"
+      vm.isLoading = true
+      if(!vm.isNew){
+        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
+        apiMethod = "put"
+      }
+      this.$http[apiMethod](api,{data: vm.tempCoupon}).then((response)=>{
+        console.log(response.data)
+        vm.getCoupon()
+        vm.isLoading = false
+      })
+      $("#couponModal").modal("hide")
+    },
+    openDelete(coupon){
+      this.tempCoupon = coupon
+      $("#deleteModal").modal("show")
+    },
+    openDeleteSure(){
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
+      this.$http.delete(api).then((response)=>{
+        console.log(response.data)
+        vm.getCoupon()
+      })
+      $("#deleteModal").modal("hide")
     }
-    // getCoupon(page = 1){
-    //   const vm = this
-    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`
-    //   vm.isLoading = true
-    //   this.$http.get(api).then((response)=>{
-    //     console.log(response.data)
-    //     vm.coupons = response.data.coupons
-    //     vm.isLoading = false
-    //     //分頁資訊
-    //     vm.pagination = response.data.pagination
-    //   })
-    // },
-    // openModal(isNew, item) {
-    //   const vm = this;
-    //   $('#couponModal').modal('show');
-    //   vm.isNew = isNew;
-    //   if (vm.isNew) {
-    //     vm.tempCoupon = {};
-    //   } else {
-    //     vm.tempCoupon = Object.assign({}, item);
-    //     //轉成iso格式，方便使用者閱讀，否則都不顯示
-    //     const dateAndTime = new Date(vm.tempCoupon.due_date * 1000).toISOString().split('T');
-    //     vm.due_date = dateAndTime[0];
-    //   }
-    // },
-    // updateCoupon(){
-    //   const vm = this
-    //   let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`
-    //   let apiMethod = "post"
-    //   vm.isLoading = true
-    //   if(!vm.isNew){
-    //     api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
-    //     apiMethod = "put"
-    //   }
-    //   this.$http[apiMethod](api,{data: vm.tempCoupon}).then((response)=>{
-    //     console.log(response.data)
-    //     vm.getCoupon()
-    //     vm.isLoading = false
-    //   })
-    //   $("#couponModal").modal("hide")
-    // },
-    // openDelete(coupon){
-    //   this.tempCoupon = coupon
-    //   $("#deleteModal").modal("show")
-    // },
-    // openDeleteSure(){
-    //   const vm = this
-    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
-    //   this.$http.delete(api).then((response)=>{
-    //     console.log(response.data)
-    //     vm.getCoupon()
-    //   })
-    //   $("#deleteModal").modal("hide")
-    // }
   },
   created(){
     this.getCoupon()

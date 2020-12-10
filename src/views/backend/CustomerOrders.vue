@@ -283,7 +283,7 @@ export default {
           this.$http.post(api,{data: order}).then((response)=>{
             console.log("訂單已建立",response)
             if(response.data.success){
-              vm.$router.push(`/customer_checkout/${response.data.orderId}`)
+              vm.$router.push(`/simulation/customer_checkout/${response.data.orderId}`)
             }
           })
         } else {

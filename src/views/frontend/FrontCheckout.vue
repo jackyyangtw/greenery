@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <div class="my-5 row justify-content-center">
-      <form class="col-md-6" @submit.prevent="payOrder">
+  <div class="p-5">
+    <h2 class="text-center pt-3">您的訂單</h2>
+    <div class="pt-5 pb-5 m-auto col-md-6 col-sm-10 col-10 row justify-content-center order_list">
+      <form class="col-md-10 col-sm-10 col-10" @submit.prevent="payOrder">
         <table class="table">
           <thead>
             <th>品名</th>
@@ -51,7 +52,7 @@
           </tbody>
         </table>
         <div class="text-right" v-if="order.is_paid === false">
-          <button class="btn btn-danger">確認付款去</button>
+          <button class="btn btn-warning">確認付款去</button>
         </div>
       </form>
     </div>
@@ -103,3 +104,6 @@ export default {
 }
 </script>
 
+<style lang="sass" scoped>
+@import '@/assets/sass/FrontCheckout.sass'
+</style>

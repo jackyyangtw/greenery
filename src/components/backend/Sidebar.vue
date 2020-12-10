@@ -1,3 +1,6 @@
+1.研究bootstrap 管理員flex排版
+2.更改bootstrap按鈕主色系(綠)
+
 <template>
   <nav
     class="col-md-2 d-done d-md-block bg-light sidebar"
@@ -51,7 +54,7 @@
       </h6>
       <ul class="nav flex-column mb-2">
         <li class="nav-item">
-          <router-link to="/customer_orders" class="nav-link">
+          <router-link to="/simulation/customer_orders" class="nav-link">
             模擬訂單
           </router-link>
         </li>

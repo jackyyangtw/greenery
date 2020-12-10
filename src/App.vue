@@ -1,26 +1,32 @@
-1.購物車列表的padding要再大一點看起來比較舒服
+
 <template>
   <div id="app">
-    <nav class="navbar navbar-light bg-light">
-      <router-link class="navbar-brand" to="/about">
+    <nav class="navbar navbar-light bg-light position-fixed w-100">
+      <router-link class="navbar-brand" to="/">
         Greenery
       </router-link>
-      <router-link class="navbar-brand ml-4" to="/about">關於我們</router-link>
-      <router-link class="navbar-brand ml-2" to="/">所有商品</router-link>
+      <router-link class="navbar-brand ml-4 desktop" to="/">關於我們</router-link>
+      <router-link class="navbar-brand ml-2 desktop" to="/shop">所有商品</router-link>
+      
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
-      <div class="dropdown ml-auto">
-
-        <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
+      <!-- 下拉選單按鈕 -->
+      <div class="dropdown ml-auto d-flex align-items-center">
+        <button class="btn btn-sm btn-cart mr-2" data-toggle="dropdown" data-flip="false">
           <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
           <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
           <span class="sr-only">unread messages</span>
         </button>
         <router-link class="navbar-brand" to="/login">登入</router-link>
+        <!-- 購物清單 -->
+        <!-- dropdown-menu 是bootstrap的class -->
         <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px"
           data-offset="400">
-          <h6>已選擇商品</h6>
+          <h6 class="mb-3 text-center"><i class="fas fa-clipboard-list mr-3 text-primary"></i>已選擇商品</h6>
           <table class="table table-sm">
             <tbody>
+              <tr v-if="!cart.carts.length" class="text-center">
+                <td>購物車目前沒東西唷!</td>
+              </tr>
               <tr v-for="item in cart.carts" :key="item.id">
                 <td class="align-middle text-center" v-if="cart.carts.length">
                   <a href="#" class="text-muted" @click.prevent="removeCart(item.id)">
@@ -33,7 +39,7 @@
               </tr>
             </tbody>
             <tfoot class="mt-4">
-              <tr>
+              <tr v-if="cart.carts.length">
                 <td class="text-right">總計</td>
                 <td></td>
                 <td></td>
@@ -41,17 +47,32 @@
               </tr>
             </tfoot>
           </table>
-          <button class="btn btn-primary btn-block">
-            <i class="fa fa-cart-plus" aria-hidden="true"></i> 結帳去
+          <button class="btn btn-primary btn-block" v-if="cart.carts.length">
+            <router-link to="/front_orders">
+              <i class="fa fa-cart-plus text-light mr-2" aria-hidden="true"></i> 
+              <span class="text-light">結帳去</span>
+            </router-link>
           </button>
         </div>
       </div>
+      <!-- 漢堡選單 -->
+      <div class="hamburger">
+        <button class="navbar-toggler bread" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse hamburg_list"
+            id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active"><router-link class="navbar-brand nav-link" to="/">關於我們</router-link></li>
+                <li class="nav-item"><router-link class="navbar-brand nav-link" to="/shop">所有商品</router-link></li>
+            </ul>
+        </div>
+      </div>
+      
     </nav>
-    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end">
+    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0">
       <div class="container">
-        <div class="p-3 bg-lighter">
-          <h1 class="display-3 font-weight-bold">綠藝盎然 Greenery</h1>
-          <p class="lead">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
+        <div class="p-5 bg-lighter">
+          <h1 class="display-5 font-weight-bold mb-4 text-center">綠藝盎然 Greenery</h1>
+          <p class="lead text-center">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
         </div>
       </div>
     </div>
@@ -60,20 +81,19 @@
     <transition name="page" mode="out-in">
       <router-view key="$route.path"/>
     </transition>
-    <footer class="bg-light text-muted py-5">
+    <footer class="text-muted py-5">
       <div class="container">
         <ul class="list-inline text-center">
           <li class="list-inline-item">© Copright 2020 綠藝盎然</li>
           <li class="list-inline-item">
             <a class="text-info" href="#">
-              <i class="fa fa-instagram" aria-hidden="true"></i> Instagrame</a>
+              <i class="fab fa-facebook-square"></i>
+            </a>
           </li>
           <li class="list-inline-item">
             <a class="text-info" href="#">
-              <i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a>
-          </li>
-          <li class="list-inline-item">
-            <a class="text-info" href="#">About</a>
+              <i class="fab fa-instagram ig"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -101,52 +121,10 @@ export default {
 </script>
 
 <style lang="sass">
+@import '@/assets/sass/_reset.sass'
 @import "~bootstrap/scss/bootstrap";
-// *
-//   border: solid 1px
-.jumbotron-bg 
-  /* banners.png */
-  background-image: url('./assets/header.jpg')
-  background-size: cover
-  background-position: center center
-  min-height: 400px
+</style>
 
-/* 半透明背景 */
-.bg-lighter 
-  background-color: rgba(255, 255, 255, .45)
-
-/* 購物車按鈕 */
-.btn-cart 
-  background-color: transparent
-  position: relative
-
-/* 購物車按鈕定位 */
-.btn-cart .badge 
-  position: absolute
-  top: 1px
-  right: 1px
-
-.main-content 
-  min-height: calc(100vh - 56px - 176px)
-
-.box-shadow 
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, .05)
-  transition: .3s linear
-
-.box-shadow:hover 
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, .08)
-
-.dropdown-menu-right 
-  right: 0
-  left: auto
-
-.alert-rounded 
-  border-radius: 50px
-
-//轉跳頁面效果
-.page-enter-active,.page-leave-active
-  transition: 0.5s
-.page-enter,.page-leave-to
-  opacity: 0
-
+<style lang="sass" scoped>
+@import 'assets/sass/App'
 </style>

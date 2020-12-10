@@ -2,9 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //frontend
-import Home from '@/views/Home'
-import About from '@/views/About'
-import Login from '@/views/Login'
+import Home from '@/views/frontend/Home'
+import Shop from '@/views/frontend/Shop'
+import Login from '@/views/frontend/Login'
+import FrontOrders from '@/views/frontend/FrontOrders'
+import FrontCheckout from '@/views/frontend/FrontCheckout'
 
 //backend
 import Dashboard from '@/views/backend/Dashboard'
@@ -23,6 +25,7 @@ export default new VueRouter({
       path: '*',
       redirect: '/login'
     },
+    //前台-----------------------------------------------------------
     {
       //元件呈現名稱
       name:'Home',
@@ -33,17 +36,28 @@ export default new VueRouter({
     },
     {
       //元件呈現名稱
-      name:'About',
+      name:'Shop',
       //對應虛擬路徑(網址上的)
-      path:'/about',
+      path:'/shop',
       //對應元件
-      component: About,
+      component: Shop,
+    },
+    {
+      name:'FrontOrders',
+      path: '/front_orders',
+      component: FrontOrders
+    },
+    {
+      path: '/front_checkout/:orderId',
+      name: 'FrontCheckout',
+      component: FrontCheckout,         
     },
     {
       path: '/login',
       name:'Login',
       component: Login
     },
+    //後台------------------------------------------------
     {
       path: '/admin',
       name:'Dashboard',
@@ -72,8 +86,10 @@ export default new VueRouter({
           meta: { requiresAuth : true },           
         },
       ]
-    },{
-      path: '/',
+    },
+    //後臺模擬功能------------------------------------------
+    {
+      path: '/simulation',
       name:'Dashboard2',
       component: Dashboard,
       children: [
