@@ -43,13 +43,14 @@
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
-              <div class="col-md-4 mb-4 card" v-for="(item) in filterData" :key="item.id">
+              <div class="col-md-4 mb-4 " v-for="(item) in filterData" :key="item.id">
                 <div class="card border-0 box-shadow text-center h-100 img-fluid">
                   <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
                   <div class="card-body card_text">
                     <h3 class="card-title">{{ item.title }}</h3>
-                    <p class="card-text text-left">{{ item.content }}</p>
-                    <p class="card-text text-right">{{ item.origin_price }}元/{{item.unit}}</p>
+                    <p class="card-text text-left mb-3">{{ item.content }}</p>
+                    <p :class="{ discounted: item.price >0}" class="card-text text-right">NT${{ item.origin_price }}元/{{item.unit}}</p>
+                    <p class="card-text text-right text-danger" v-if="item.price">現在只要:NT$ {{item.price}}/{{item.unit}}</p>
                   </div>
                   <div class="card-footer border-top-0 bg-white">
                     <button class="btn btn-outline-secondary btn-block btn-sm"
@@ -64,19 +65,35 @@
           <!-- Modal -->
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+              <div class="modal-content" v-for="(item) in filterItem" :key="item.id">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                  <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}}</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex">
+                        <div class="img w-50">
+                          <img :src="item.imageUrl" alt="">
+                        </div>
+                        <div class="content p-3 d-flex flex-column justify-content-center w-50">
+                          <p>{{item.content}}</p>
+                          <p>{{item.description}}</p>
+                          <p :class="{ discounted: item.price >0}" class="card-text text-right">NT${{ item.origin_price }}元/{{item.unit}}</p>
+                          <p class="card-text text-right text-danger" v-if="item.price">現在只要:NT$ {{item.price}}/{{item.unit}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                  <button type="button" class="btn btn-primary" @click="addtoCart(item.id)">
+                    <i class="fa fa-cart-plus mr-1" aria-hidden="true"></i>加入購物車
+                  </button>
                 </div>
               </div>
             </div>
@@ -107,6 +124,14 @@ export default {
         });
       }
       return this.products;
+    },
+    filterItem(){
+      const vm = this
+      return vm.products.filter((item)=>{
+        if(vm.products.id === item.id){
+          return item
+        }
+      })
     },
     ...mapGetters('productsModules',['categories','products'])
   },

@@ -1,3 +1,5 @@
+// css animate
+  
 @import '@/assets/sass/_reset.sass'
   
 $bg_white: #faf5e4
@@ -23,8 +25,8 @@ $item_white: darken(#eee,8)
   justify-content: center
   align-items: center
 
-.section_padding
-  padding: 1em
+section
+  padding: 3em 1em
 
 h1,h2,h3
   font-weight: 700
@@ -48,6 +50,7 @@ p
 .wrap
   max-width: 1200px
   margin: 0 auto
+  overflow: hidden
 #bugQue
   padding-top: 15%  
   background-color: $bg_white
@@ -83,7 +86,7 @@ p
       font-size: 100px 
   .mountains
     position: relative
-    bottom: -3em
+    bottom: -5em
     display: flex
     justify-content: center
     align-items: center
@@ -135,7 +138,7 @@ p
           margin: 1em 0 
           font-weight: 400
       @include ipad
-        width: 80%
+        max-width: 90%
         margin: 0 auto
 #nature
   background-color: $bg_white
@@ -148,12 +151,16 @@ p
     .sun
       color: $item_yellow
       font-size: 200px
+      animation: sunroll 3s infinite
     .cloudbox
       +fcenter
       .cloud
+        animation: cloudmove1 3s infinite
         font-size: 150px
         color: $item_white
         margin: 0 10px
+      .cloud2,.cloud4
+        animation-delay: 0.8s
   @include ipad
     .sky
       .sun
@@ -170,6 +177,8 @@ p
 
     .icons
       +fcenter
+      margin-top: 10%
+      animation: iconsMove 3s infinite
       .water
         color: $item_blue
       .fish
@@ -189,7 +198,7 @@ p
   .trees
     color: $item_lightGreen
     position: relative
-    bottom: -1.5em
+    bottom: -3.5em
     +fcenter
     i
       font-size: 100px
@@ -200,6 +209,32 @@ p
     .s
       margin-top: 38px
       font-size: 50px
+@keyframes cloudmove1
+  0%
+    transform: translateY(-10px)
+  50%
+    transform: translateY(50px)
+  100%
+    transform: translateY(-10px)
+  
+@keyframes sunroll
+  0%
+    transform: rotate(0deg)
+  25%
+    transform: rotate(90deg)
+  50%
+    transform: rotate(180deg)
+  75%
+    transform: rotate(270deg)
+  100%
+    transform: rotate(360deg)
+@keyframes iconsMove
+  0%
+    transform: translateX(30px)
+  50%
+    transform: translateX(0)
+  100%
+    transform: translateX(30px)
 #danger
   background-color: $bg_lightGreen
   +fcenter
@@ -272,9 +307,19 @@ p
     h2
       margin-top: 3em
   .icons
+    transition-delay: 0.5s
+    .lightbulb
+      animation: blubshine 2s infinite
     i
       font-size: 60px
       margin: 1%
+@keyframes blubshine
+  0%
+    color: $item_yellow
+  50%
+    color: black
+  100%
+    color: $item_yellow
 #test
   background-color: $bg_yellow
   .title
@@ -320,7 +365,7 @@ p
       font-size: 100px 
   .mountains
     position: relative
-    bottom: -3em
+    bottom: -5em
     +fcenter
     i
       color: $item_lightGreen
@@ -354,7 +399,7 @@ p
     .card
       background-color: $bg_white
       line-height: 1.8
-      max-width: 60%
+      max-width: 70%
       margin: auto
       transition: 0.3s
       &:hover
@@ -371,8 +416,9 @@ p
           margin: 1em 0 
           font-weight: 400
       @include ipad
-        width: 80%
-        margin: 0 auto
+        max-width: 60%
+      @include iphone8plus
+        max-width: 90%
 
 // animate
 .animated_fadeIn
@@ -382,5 +428,41 @@ p
 .fadeIn
   opacity: 1
   transform: translateY(0px)
+
+.animated_slideToRight
+  opacity: 0
+  transform: translateX(-50px)
+  transition: 1s
+.slideToRight
+  opacity: 1
+  transform: translateX(0)
+
+.animated_slideToLeft
+  opacity: 0
+  transform: translateX(50px)
+  transition: 1s
+.slideToLeft
+  opacity: 1
+  transform: translateX(0)
+
+.animated_slideDown
+  opacity: 0
+  transform: translateY(-50px)
+  transition: 1s
+.slideDown
+  opacity: 1
+  transform: translateY(0px)
+.animated_showUp
+  opacity: 0
+  transition: 1s
+.showUp
+  opacity: 1
+.animated_scale
+  transform: scale(0.5)
+  transition: 1s
+.scale
+  transform: scale(1.3)
+
+
 
 
