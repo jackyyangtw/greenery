@@ -44,7 +44,7 @@
             <div class="row align-items-stretch">
               <!-- 商品 -->
               <div class="col-md-4 mb-4 " v-for="(item) in filterData" :key="item.id">
-                <div class="card border-0 box-shadow text-center h-100 img-fluid">
+                <div class="card border-2 box-shadow text-center h-100 img-fluid">
                   <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
                   <div class="card-body card_text">
                     <h3 class="card-title">{{ item.title }}</h3>
