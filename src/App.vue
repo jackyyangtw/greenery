@@ -68,11 +68,17 @@
       </div>
       
     </nav>
-    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0">
-      <div class="container">
+    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
+      <div class="container p-5">
         <div class="p-5 bg-lighter">
           <h1 class="display-5 font-weight-bold mb-4 text-center">綠藝盎然 Greenery</h1>
           <p class="lead text-center">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-5">
+          <div class="p-5">
+            <p class="h5">探索Greenery吧~</p>
+            <p class="text-center h5 drop">V</p>
+          </div>
         </div>
       </div>
     </div>

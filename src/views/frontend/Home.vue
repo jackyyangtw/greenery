@@ -1,7 +1,3 @@
-1.jquery動畫加入或是參考wow.js
-2.更改About.vue 為Home.vue，Home.vue更改為shop.vue(需要先存檔備份，有許多地方要改，怕出錯)
-3.views新增frontend資料夾，把前端東西丟進去(依樣先輩分)
-
 <template>
   <div>
     <div class="wrap">
@@ -48,7 +44,7 @@
               <div class="text">
                 <h2>{{ item.title }}</h2>
                 <h3 class="middel">{{ item.content }}</h3>
-                <h3>NT${{item.price}}</h3>
+                <h3>NT${{item.origin_price}}</h3>
               </div>
             </div>
           </div>
@@ -203,7 +199,7 @@
               <div class="text">
                 <h2>{{ item.title }}</h2>
                 <h3 class="middel">{{ item.content }}</h3>
-                <h3>NT${{item.price}}</h3>
+                <h3>NT${{item.origin_price}}</h3>
               </div>
             </div>
           </div>
