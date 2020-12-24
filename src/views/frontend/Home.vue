@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="wrap">
       <section id="bugQue">
         <div class="title animated_fadeIn">

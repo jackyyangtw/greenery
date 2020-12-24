@@ -7,14 +7,35 @@
   display: flex
   justify-content: center
   align-items: center
+
 img
-  height: 350px
+  min-height: 100px
   // 讓圖片不會拉伸
   object-fit: cover
 .priductPic
   cursor: pointer
   height: 300px
+  transition: 0.5s
+  &:hover
+    transform: scale(1.2)
 .card_text
   line-height: 2
 .discounted
   text-decoration: line-through
+.type
+  border-style: dashed
+  border-width: medium
+  @include ipad
+    position: static
+.toTop
+  position: fixed
+  right: 10px
+  bottom: 30px
+  cursor: pointer
+  i
+    font-size: 50px
+// .productCard
+//   &:hover
+//     .priductPic
+//       transform: translateX(20px)
+    

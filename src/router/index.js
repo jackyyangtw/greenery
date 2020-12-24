@@ -19,6 +19,7 @@ import Cupons from '@/views/backend/Cupons'
 
 Vue.use(VueRouter);
 export default new VueRouter({
+  mode: 'history',
   routes: [
     {
       //防止用戶進入未定義頁面(自創網址等等)，重新導向login頁面

@@ -1,12 +1,12 @@
 
 <template>
   <div id="app">
-    <nav class="navbar navbar-light bg-light position-fixed w-100">
+    <nav class="navbar navbar-light bg-light w-100">
       <router-link class="navbar-brand" to="/">
         Greenery
       </router-link>
-      <router-link class="navbar-brand ml-4 desktop" to="/">關於我們</router-link>
-      <router-link class="navbar-brand ml-2 desktop" to="/shop">所有商品</router-link>
+      <router-link class="navbar-brand ml-4 desktop text-primary" to="/"><i class="fas fa-globe-asia mr-1"></i>關於我們</router-link>
+      <router-link class="navbar-brand ml-2 desktop text-primary" to="/shop"><i class="fas fa-clipboard-list mr-1"></i>所有商品</router-link>
       
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
       <!-- 下拉選單按鈕 -->
@@ -16,7 +16,7 @@
           <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
           <span class="sr-only">unread messages</span>
         </button>
-        <router-link class="navbar-brand" to="/login">登入</router-link>
+        <router-link class="navbar-brand text-primary" to="/login">登入</router-link>
         <!-- 購物清單 -->
         <!-- dropdown-menu 是bootstrap的class -->
         <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px"
@@ -69,13 +69,13 @@
       
     </nav>
     <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
-      <div class="container p-5">
-        <div class="p-5 bg-lighter">
-          <h1 class="display-5 font-weight-bold mb-4 text-center">綠藝盎然 Greenery</h1>
+      <div class="container">
+        <div class="p-5 bg-lighter mt-5">
+          <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
           <p class="lead text-center">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-          <div class="p-5">
+          <div>
             <p class="h5">探索Greenery吧~</p>
             <p class="text-center h5 drop">V</p>
           </div>
@@ -84,6 +84,7 @@
     </div>
     <Loading :active.sync="isLoading"></Loading>
     <!-- 轉跳頁面效果 -->
+    <Alert/>
     <transition name="page" mode="out-in">
       <router-view key="$route.path"/>
     </transition>
@@ -109,8 +110,12 @@
 
 <script>
 import { mapGetters,mapActions } from 'vuex'
+import Alert from "@/components/AlertMessage";
 export default {
   name: 'App',
+  components: {
+    Alert
+  },
   computed: {
     isLoading(){
       return this.$store.state.isLoading
@@ -119,6 +124,9 @@ export default {
   },  
   methods: {
     ...mapActions('cartsModules',['removeCart','getCart']),
+    updateMessage() {
+      this.$bus.$emit('message:push', '成功', '商品已成功加入購物車', 'success');
+    },
   },
   created() {
     this.getCart();

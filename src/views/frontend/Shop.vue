@@ -1,32 +1,30 @@
-增加modal描述!
-增加類別的商品數量
-加入eventbus效果
 <template>
   <div>
     <div class="container main-content mb-3 mt-3">
-      <div class="row">
+      <div class="row position-relative">
         <div class="col-md-3">
           <!-- 左側選單 (List group) -->
-          <div class="list-group">
-            <a class="list-group-item list-group-item-action"
+          <ul class="list-group sticky-top">
+            <li class="list-group-item list-group-item-action type text-center bg-warning">商品種類</li>
+            <a class="list-group-item list-group-item-action type "
               href="#" @click.prevent="searchText = item"
               :class="{ 'active': item === searchText}"
               v-for="item in categories" :key="item">
               {{ item }}
             </a>
-            <a href="#" class="list-group-item list-group-item-action"
+            <a href="#" class="list-group-item list-group-item-action type "
               @click.prevent="searchText = ''"
               :class="{ 'active': searchText === ''}">
               全部顯示
             </a>
-          </div>
+          </ul>
         </div>
 
         <!-- 子頁面 -->
-        <div class="col-md-9">
+        <div class="col-md-9" id="childPage">
           <div class="d-flex mb-4">
             <!-- Search bar -->
-            <form class="form-inline my-3 my-lg-0">
+            <form class="form-inline my-3 my-lg-0" id="searchBar">
               <div class="input-group">
                 <input class="form-control" type="text" v-model="searchText"
                   placeholder="Search" aria-label="Search">
@@ -43,24 +41,31 @@
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
-              <div class="col-md-4 mb-4 " v-for="(item) in filterData" :key="item.id">
-                <div class="card border-2 box-shadow text-center h-100 img-fluid">
-                  <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
-                  <div class="card-body card_text">
-                    <h3 class="card-title">{{ item.title }}</h3>
-                    <p class="card-text text-left mb-3">{{ item.content }}</p>
-                    <p :class="{ discounted: item.price >0}" class="card-text text-right">NT${{ item.origin_price }}元/{{item.unit}}</p>
-                    <p class="card-text text-right text-danger" v-if="item.price">現在只要:NT$ {{item.price}}/{{item.unit}}</p>
+              <div class="col-md-6 mb-4 col-sm-6 col-6 col-lg-4" v-for="(item) in filterData" :key="item.id">
+                <div class="card border-2 box-shadow text-center img-fluid productCard ">
+                  <div class="img overflow-hidden">
+                    <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
                   </div>
-                  <div class="card-footer border-top-0 bg-white">
-                    <button class="btn btn-outline-secondary btn-block btn-sm"
-                      @click="addtoCart(item.id)">
-                      <i class="fa fa-cart-plus" aria-hidden="true"></i> 加到購物車
-                    </button>
+                  <div class="card-body">
+                    <h3 class="card-title">{{ item.title }}</h3>
+                    <div class="content d-flex justify-content-between align-items-center">
+                      <div class="price">
+                        <p :class="{ discounted: item.price >0}" class="card-text text-right">NT${{ item.origin_price }}元/{{item.unit}}</p>
+                        <p class="card-text text-right text-danger" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
+                      </div>
+                      <button class="btn btn-outline-secondary btn-sm"
+                        @click="addtoCart(item.id)">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <!-- toTop -->
+          <div class="toTop bg-light p-2 rounded-circle">
+            <a href="#searchBar"><i class="fas fa-arrow-up"></i></a>
           </div>
           <!-- Modal -->
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -128,9 +133,7 @@ export default {
     filterItem(){
       const vm = this
       return vm.products.filter((item)=>{
-        if(vm.products.id === item.id){
-          return item
-        }
+        return vm.products.id == item.id
       })
     },
     ...mapGetters('productsModules',['categories','products'])
@@ -151,11 +154,28 @@ export default {
     console.log("這是token",token)
     this.$http.defaults.headers.common.Authorization = `${token}`;
   },
+  mounted(){
+    $(document).ready(()=> {
+      $(() => {
+        $(window).scroll(() => {
+          if ($(window).scrollTop() >= 50) {
+            $('.toTop').fadeIn();
+          } else {
+            $('.toTop').fadeOut();
+          }
+        });
+      });
+      $('.toTop').click((event) => {
+        event.preventDefault();
+        $('html,body').animate({ scrollTop: 0 }, 500);
+      });
+    })
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import '@/assets/sass/Shop.sass'
 </style>
