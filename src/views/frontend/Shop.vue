@@ -41,17 +41,20 @@
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
-              <div class="col-md-6 mb-4 col-sm-6 col-6 col-lg-4" v-for="(item) in filterData" :key="item.id">
+              <div class="col-md-6 mb-4 col-sm-6 col-12 col-lg-4" v-for="(item) in filterData" :key="item.id">
                 <div class="card border-2 box-shadow text-center img-fluid productCard ">
-                  <div class="img overflow-hidden">
-                    <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="openModal">
+                  <div class="overflow-hidden">
+                    <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="getProduct(item.id)">
                   </div>
                   <div class="card-body">
-                    <h3 class="card-title">{{ item.title }}</h3>
+                    <div class="title d-flex justify-content-between align-items-center">
+                      <h3 class="card-title text-info">{{ item.title }}</h3>
+                      <p class="card-title text-light bg-warning p-1 rounded"> {{item.category}} </p>
+                    </div>
                     <div class="content d-flex justify-content-between align-items-center">
                       <div class="price">
-                        <p :class="{ discounted: item.price >0}" class="card-text text-right">NT${{ item.origin_price }}元/{{item.unit}}</p>
-                        <p class="card-text text-right text-danger" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
+                        <p :class="{ discounted: item.price >0}" class="card-text text-right mb-1">NT${{ item.origin_price }}元/{{item.unit}}</p>
+                        <p class="card-text text-left text-primary m-0" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
                       </div>
                       <button class="btn btn-outline-secondary btn-sm"
                         @click="addtoCart(item.id)">
@@ -70,9 +73,9 @@
           <!-- Modal -->
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content" v-for="(item) in filterItem" :key="item.id">
+              <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}}</h5>
+                  <h3 class="modal-title text-info" id="exampleModalLongTitle">{{product.title}}</h3>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -82,13 +85,23 @@
                     <div class="col-md-12">
                       <div class="d-flex">
                         <div class="img w-50">
-                          <img :src="item.imageUrl" alt="">
+                          <img :src="product.imageUrl" alt="">
                         </div>
                         <div class="content p-3 d-flex flex-column justify-content-center w-50">
-                          <p>{{item.content}}</p>
-                          <p>{{item.description}}</p>
-                          <p :class="{ discounted: item.price >0}" class="card-text text-right">NT${{ item.origin_price }}元/{{item.unit}}</p>
-                          <p class="card-text text-right text-danger" v-if="item.price">現在只要:NT$ {{item.price}}/{{item.unit}}</p>
+                          <div class="text-light card-title text-center bg-warning rounded mb-2 w-50">{{product.category}}</div>
+                          <h4 class="text-primary border-bottom border-primary pb-2">產品介紹</h4>
+                          <div class="text-content mb-1">
+                            <p class="mb-1">{{product.content}}</p>
+                            <p class="text-primary">{{product.description}}</p>
+                          </div>
+                          
+                          <p :class="{ discounted: product.price >0}" class="card-text text-right">NT${{ product.origin_price }}元/{{product.unit}}</p>
+                          <p class="card-text text-right text-primary font-weight-bold" v-if="product.price">NT$ {{product.price}}/{{product.unit}}</p>
+                          <select name="" class="form-control mt-3" v-model="product.num" id="">
+                            <option :value="number" v-for="number in 10" :key="number">
+                              選購 {{ number }} {{product.unit}}
+                            </option>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -96,7 +109,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                  <button type="button" class="btn btn-primary" @click="addtoCart(item.id)">
+                  <button type="button" class="btn btn-primary" @click="addtoCart(product.id,product.num)">
                     <i class="fa fa-cart-plus mr-1" aria-hidden="true"></i>加入購物車
                   </button>
                 </div>
@@ -113,10 +126,12 @@
 import $ from 'jquery'
 import { mapGetters,mapActions } from 'vuex'
 export default {
-  name: 'Home',
+  //開發者工具上顯示的名稱
+  name: 'Shop',
   data() {
     return {
       searchText: '',
+      product: {}
     };
   },
   computed: {
@@ -130,12 +145,6 @@ export default {
       }
       return this.products;
     },
-    filterItem(){
-      const vm = this
-      return vm.products.filter((item)=>{
-        return vm.products.id == item.id
-      })
-    },
     ...mapGetters('productsModules',['categories','products'])
   },
   methods: {
@@ -143,10 +152,19 @@ export default {
     //帶多個參數必須使用dispatch
     addtoCart(id, qty = 1) {
       this.$store.dispatch('cartsModules/addtoCart',{id,qty})
+      $("#exampleModalLong").modal("hide")
     },
-    openModal(){
-      $('#exampleModalLong').modal('show')
-    }
+    getProduct(id){
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
+      this.$store.dispatch('updateLoading',true)
+      this.$http.get(api).then((response)=>{
+        vm.product = response.data.product
+        console.log(response)
+        $("#exampleModalLong").modal("show")
+        this.$store.dispatch('updateLoading',false)
+      })
+    },
   },
   created() {
     this.getProducts();

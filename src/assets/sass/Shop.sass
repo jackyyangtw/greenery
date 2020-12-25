@@ -1,5 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
-
+@import "@/assets/sass/_reset.sass"
 @mixin ipad
   @media(max-width: 768px)
     @content
@@ -7,15 +7,25 @@
   display: flex
   justify-content: center
   align-items: center
-
-img
-  min-height: 100px
-  // 讓圖片不會拉伸
-  object-fit: cover
+h1,h2,h3
+  font-weight: 700
+h1
+  font-size: 48px
+h2
+  font-size: 30px
+h3
+  font-size: 20px
+h4
+  font-size: 18px
+p
+  font-size: 16px
 .priductPic
   cursor: pointer
   height: 300px
   transition: 0.5s
+  min-height: 100px
+  // 讓圖片不會拉伸
+  object-fit: cover
   &:hover
     transform: scale(1.2)
 .card_text
@@ -34,8 +44,7 @@ img
   cursor: pointer
   i
     font-size: 50px
-// .productCard
-//   &:hover
-//     .priductPic
-//       transform: translateX(20px)
+.text-content
+  margin-top: 0.5em
+  line-height: 2
     

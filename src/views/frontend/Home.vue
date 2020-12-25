@@ -1,7 +1,9 @@
 <template>
   <div>
-
     <div class="wrap">
+      <div class="toTop bg-light p-2 rounded-circle">
+        <a href="#searchBar"><i class="fas fa-arrow-up"></i></a>
+      </div>
       <section id="bugQue">
         <div class="title animated_fadeIn">
           <img class="bug1 " src="@/assets/cockroach.png" alt="">
@@ -41,7 +43,9 @@
         <VueSlickCarousel v-bind="settings" v-if="products.length">
           <div class="cards" v-for="(item) in bugData" :key="item.id">
             <div class="card" v-if="item.category">
-              <img :src="item.imageUrl" alt="">
+              <router-link to="/shop">
+                <img :src="item.imageUrl" alt="">
+              </router-link>
               <div class="text">
                 <h2>{{ item.title }}</h2>
                 <h3 class="middel">{{ item.content }}</h3>
@@ -196,7 +200,9 @@
         <VueSlickCarousel v-bind="settings" v-if="products.length">
           <div class="cards" v-for="(item) in ionData" :key="item.id">
             <div class="card">
-              <img :src="item.imageUrl" alt="">
+              <router-link to="/shop">
+                <img :src="item.imageUrl" alt="">
+              </router-link>
               <div class="text">
                 <h2>{{ item.title }}</h2>
                 <h3 class="middel">{{ item.content }}</h3>
@@ -282,7 +288,11 @@ export default {
   },
   //操作DOM元素要在mounted階段
   mounted(){
-    $(document).ready(function(){
+    $(document).ready(()=>{
+      $('.toTop').click((event) => {
+        event.preventDefault();
+        $('html,body').animate({ scrollTop: 0 }, 500);
+      });
       $(window).scroll(function(){
         var scrollPos = $(window).scrollTop()
         var windowHeight = $(window).height()
@@ -322,6 +332,11 @@ export default {
             $(this).addClass('scale')
           }
         })
+        if ($(window).scrollTop() >= 50) {
+          $('.toTop').fadeIn();
+        } else {
+          $('.toTop').fadeOut();
+        }
       })
     })
   }
