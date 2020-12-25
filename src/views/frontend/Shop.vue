@@ -160,6 +160,7 @@ export default {
       this.$store.dispatch('updateLoading',true)
       this.$http.get(api).then((response)=>{
         vm.product = response.data.product
+        vm.product.num = 1
         console.log(response)
         $("#exampleModalLong").modal("show")
         this.$store.dispatch('updateLoading',false)
