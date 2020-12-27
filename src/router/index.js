@@ -21,19 +21,19 @@ Vue.use(VueRouter);
 export default new VueRouter({
   mode: 'history',
   routes: [
-    {
-      //防止用戶進入未定義頁面(自創網址等等)，重新導向login頁面
-      path: '*',
-      redirect: '/login'
-    },
     //前台-----------------------------------------------------------
     {
       //元件呈現名稱
       name:'Home',
       //對應虛擬路徑(網址上的)
-      path:'/',
+      path:'/home',
       //對應元件
       component: Home,
+    },
+    {
+      //防止用戶進入未定義頁面(自創網址等等)，重新導向login頁面
+      path: '*',
+      redirect: '/home'
     },
     {
       //元件呈現名稱

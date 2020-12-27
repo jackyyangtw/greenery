@@ -2,10 +2,10 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-light bg-light w-100">
-      <router-link class="navbar-brand" to="/">
+      <router-link class="navbar-brand" to="/home">
         Greenery
       </router-link>
-      <router-link class="navbar-brand ml-4 desktop text-primary" to="/"><i class="fas fa-globe-asia mr-1"></i>關於我們</router-link>
+      <router-link class="navbar-brand ml-4 desktop text-primary" to="/home"><i class="fas fa-globe-asia mr-1"></i>關於我們</router-link>
       <router-link class="navbar-brand ml-2 desktop text-primary" to="/shop"><i class="fas fa-clipboard-list mr-1"></i>所有商品</router-link>
       
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
@@ -29,7 +29,7 @@
               </tr>
               <tr v-for="item in cart.carts" :key="item.id">
                 <td class="align-middle text-center" v-if="cart.carts.length">
-                  <a href="#" class="text-muted" @click.prevent="removeCart(item.id)">
+                  <a href="#" class="text-muted trashCan" @click.prevent="removeCart(item.id)">
                     <i class="fas fa-trash" aria-hidden="true"></i>
                   </a>
                 </td>

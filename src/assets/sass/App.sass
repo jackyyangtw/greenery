@@ -1,4 +1,5 @@
 
+$item_lightGreen: #2c786c
 
 @mixin ipad
   @media(max-width: 768px)
@@ -45,6 +46,10 @@ nav
 .btn-cart 
   background-color: transparent
   position: relative
+.trashCan
+  i
+    &:hover,&:active
+      color: $item_lightGreen
 
 /* 購物車按鈕定位 */
 .btn-cart .badge 
