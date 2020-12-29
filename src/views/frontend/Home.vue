@@ -238,6 +238,8 @@ export default {
       settings:{
         slidesToShow: 2,
         autoplay: true,
+        arrows: false,
+        dots: true,
         responsive: [
           {
             breakpoint: 768,
