@@ -21,7 +21,6 @@ import Cupons from '@/views/backend/Cupons'
 
 Vue.use(VueRouter);
 export default new VueRouter({
-  mode: 'history',
   routes: [
     //前台-----------------------------------------------------------
     {
