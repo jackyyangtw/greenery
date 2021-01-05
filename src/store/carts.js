@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import $ from 'jquery'
 export default{
   namespaced: true,
   strict: true,
@@ -41,6 +41,9 @@ export default{
       axios.post(url, { data: item }).then((response) => {
         context.commit('LOADING',false,{ root:true })
         context.dispatch('getCart')
+        if(response.data.success){
+          this.$bus.$emit('message:push',response.data.message,'danger')
+        }
         console.log('加入購物車:', response);
       });
     },
