@@ -59,7 +59,7 @@ import { mapGetters,mapActions } from 'vuex'
 
 export default {
   //開發者工具上顯示的名稱
-  name: 'Shop',
+  name: 'Favorite',
   computed: {
     ...mapGetters('heartModules',['myFavorite']),
     ...mapGetters('productsModules',['categories','products']),
