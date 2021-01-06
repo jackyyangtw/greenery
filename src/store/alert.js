@@ -1,4 +1,5 @@
-
+//詢問助教該怎麼在vuex註冊事件
+//如果太麻煩就用openmodal的方式
 export default{
   namespaced: true,
   strict: true,

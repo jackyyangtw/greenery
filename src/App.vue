@@ -7,7 +7,7 @@
       </router-link>
       <router-link class="navbar-brand ml-4 desktop text-primary" to="/home"><i class="fas fa-globe-asia mr-1"></i>關於我們</router-link>
       <router-link class="navbar-brand ml-2 desktop text-primary" to="/shop"><i class="fas fa-clipboard-list mr-1"></i>所有商品</router-link>
-      
+      <router-link class="navbar-brand ml-2 desktop text-primary" to="/favorite"><i class="fas fa-heart mr-1"></i>收藏清單</router-link>
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
       <!-- 下拉選單按鈕 -->
       <div class="dropdown ml-auto d-flex align-items-center">

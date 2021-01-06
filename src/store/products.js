@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import Vue from 'vue'
 export default{
   //state 是模組區域變數  
   //nutations actions getter 是全域變數
@@ -8,6 +8,7 @@ export default{
   state:{
     products: [],
     categories: [],
+    myFavorite: JSON.parse(localStorage.getItem('myFavorite')) || [],
   },
   //操作行為，不操作資料狀態
   actions: {
@@ -23,6 +24,7 @@ export default{
         //response.data.products 傳給 CATEGORIES
         context.commit('CATEGORIES',response.data.products)
         console.log('取得產品列表:', response);
+        context.commit('GET_PRODUCTS', response)
         context.commit('LOADING',false, { root: true });
       });
     },
@@ -33,8 +35,21 @@ export default{
   mutations: {
     PRODUCTS(state,payload){
       state.products = payload;
-      //商品陣列
-      console.log("這是payload",payload)
+      //商品陣列 response.data.products
+      console.log("這是PRODUCTS的payload",payload)
+    },
+    GET_PRODUCTS (state, res) {
+      state.products = res.data.products
+      state.products.forEach(function (item) {
+        Vue.set(item, 'isLike', false)
+      })
+      state.products.forEach(function (item) {
+        state.myFavorite.forEach(function (itemLove) {
+          if (itemLove === item.id) {
+            item.isLike = true
+          }
+        })
+      })
     },
     CATEGORIES(state,payload){
       //定義 categories 是一個新的物件
@@ -49,13 +64,14 @@ export default{
         categories.add(item.category);
       });
       console.log("forEach後的categories",categories)
-      //將三個字串變成陣列存到state.categories
+      //將字串變成陣列存到state.categories
       state.categories = Array.from(categories);
       console.log("state.categories",state.categories)
     },
   },
   getters: {
     categories: state =>state.categories,
-    products: state => state.products
+    products: state => state.products,
+    myFavorite: state => state.myFavorite,
   }
 }

@@ -60,6 +60,9 @@
                         @click="addtoCart(item.id)">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                       </button>
+                      <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
+                        <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -145,7 +148,8 @@ export default {
       }
       return this.products;
     },
-    ...mapGetters('productsModules',['categories','products'])
+    ...mapGetters('heartModules',['myFavorite']),
+    ...mapGetters('productsModules',['categories','products']),
   },
   methods: {
     ...mapActions('productsModules',['getProducts']),
@@ -165,6 +169,9 @@ export default {
         $("#exampleModalLong").modal("show")
         this.$store.dispatch('updateLoading',false)
       })
+    },
+    addMyFavorite (id) {
+      this.$store.dispatch('heartModules/addMyFavorite',{id})
     },
   },
   created() {

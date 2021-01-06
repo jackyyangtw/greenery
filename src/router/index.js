@@ -9,6 +9,7 @@ import Shop from '@/views/frontend/Shop'
 import Login from '@/views/frontend/Login'
 import FrontOrders from '@/views/frontend/FrontOrders'
 import FrontCheckout from '@/views/frontend/FrontCheckout'
+import Favorite from '@/views/frontend/Favorite'
 
 //backend
 import Dashboard from '@/views/backend/Dashboard'
@@ -58,6 +59,11 @@ export default new VueRouter({
       path: '/login',
       name:'Login',
       component: Login
+    },
+    {
+      path: '/favorite',
+      name: 'Favorite',
+      component: Favorite, 
     },
     //後台------------------------------------------------
     {
