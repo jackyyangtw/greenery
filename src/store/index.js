@@ -14,6 +14,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   //嚴謹模式，出現不符合規範的語法就跳錯
   strict: true,
+  namespaced: true,
   state:{
     isLoading: false,
     messages:[]

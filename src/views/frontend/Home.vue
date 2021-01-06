@@ -1,6 +1,20 @@
 <template>
   <div>
     <div class="wrap">
+    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
+      <div class="container">
+        <div class="p-5 bg-lighter mt-5">
+          <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
+          <p class="lead text-center">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-5">
+          <div>
+            <p class="h5">探索Greenery吧~</p>
+            <p class="text-center h5 drop">V</p>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="toTop bg-light p-2 rounded-circle">
         <a href="#searchBar"><i class="fas fa-arrow-up"></i></a>
       </div>
