@@ -1,7 +1,14 @@
 <template>
   <div>
+    <div class="jumbotron jumbotron-fluid bg d-flex justify-content-center align-items-center">
+      <div class="container  mt-5">
+        <div class="p-4 header_title">
+          <h1 class="text-center">管理者平台</h1>
+        </div>
+      </div>
+    </div>
     <form class="form-signin" @submit.prevent="signin">
-      <h1 class="h3 mb-3 font-weight-normal">管理者平台</h1>
+      <h1 class="h3 mb-3 font-weight-normal">管理登入</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" v-model="user.username"
         placeholder="Email address" required autofocus>
@@ -60,54 +67,62 @@ export default {
 }
 </script>
 
-<style scoped>
-html,
-body {
-  height: 100%;
-}
+<style lang="sass" scoped>
+@import '@/assets/sass/_grid.sass'
+.bg
+  background-image: url('../../assets/loginHeader.jpeg')
+  background-size: cover
+  background-position: center center
+  min-height: 350px
+.header_title
+  letter-spacing: 16px
+  color: lighten(grey,80)
+  +ipad
+    width: 100% !important
+html,body 
+  height: 100%
+body 
+  display: -ms-flexbox
+  display: -webkit-box
+  display: flex
+  -ms-flex-align: center
+  -ms-flex-pack: center
+  -webkit-box-align: center
+  align-items: center
+  -webkit-box-pack: center
+  justify-content: center
+  padding-top: 40px
+  padding-bottom: 40px
+  background-color: #f5f5f5
 
-body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+.form-signin 
+  width: 100%
+  max-width: 330px
+  padding: 15px
+  margin: 0 auto
+
+.form-signin .checkbox 
+  font-weight: 400
+
+.form-signin .form-control 
+  position: relative
+  box-sizing: border-box
+  height: auto
+  padding: 10px
+  font-size: 16px
+
+.form-signin .form-control:focus 
+  z-index: 2
+
+.form-signin input[type="email"] 
+  margin-bottom: -1px
+  border-bottom-right-radius: 0
+  border-bottom-left-radius: 0
+
+.form-signin input[type="password"] 
+  margin-bottom: 10px
+  border-top-left-radius: 0
+  border-top-right-radius: 0
+
 </style>

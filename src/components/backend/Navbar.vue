@@ -1,10 +1,10 @@
 <template>
   <div>
     <nav
-      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow mb-3 mt--1"
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow mt--1 "
     >
       <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#"
-        >管理者後台</a
+        >管理者平台</a
       >
       <button
         class="navbar-toggler position-absolute d-md-none collapsed"

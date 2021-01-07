@@ -27,6 +27,13 @@ export default{
         context.commit('LOADING',false,{ root:true })
         //調用
         context.dispatch('getCart')
+        if(response.data.success){
+          context.dispatch('updateMessage', {
+            message: response.data.message,
+            status: 'success',
+          },
+          { root: true });
+        }
         console.log('刪除購物車項目', response);
       });
     },
@@ -43,7 +50,7 @@ export default{
         context.dispatch('getCart')
         if(response.data.success){
           context.dispatch('updateMessage', {
-            message: '已加入訂製',
+            message: response.data.message,
             status: 'success',
           },
           { root: true });

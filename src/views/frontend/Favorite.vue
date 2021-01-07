@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="jumbotron jumbotron-fluid bg d-flex justify-content-center align-item-center">
+      <div class="container p-5 ">
+        <div class="header_title p-4 mt-5">
+          <h1 class="text-center">收藏清單</h1>
+        </div>
+      </div>
+    </div>
     <div class="container main-content mb-3 mt-3">
       <div class="row position-relative">
         <!-- 子頁面 -->
@@ -120,4 +127,18 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/assets/sass/Shop.sass'
+@import '@/assets/sass/_grid.sass'
+.bg
+  background-image: url('../../assets/favoriteHeader.jpeg')
+  background-size: cover
+  background-position: 25% 70%
+  min-height: 400px
+.bg-lighter 
+  background-color: rgba(255, 255, 255, .45)
+  letter-spacing: 16px
+.header_title
+  letter-spacing: 16px
+  color: lighten(grey,80)
+  +ipad
+    width: 100% !important
 </style>

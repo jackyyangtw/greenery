@@ -29,10 +29,13 @@ export default new Vuex.Store({
       context.commit('MESSAGE',{ message,status })
       const timestamp = Math.floor(new Date() / 1000);
       context.dispatch('removeMessageWithTiming',timestamp)
+      // const timestamp = Math.floor(new Date() / 1000);
+      // this.removeMessageWithTiming(timestamp);
     },
     //按下X關掉
     removeMessage(context,num) {
       context.commit('REMOVEMESSAGE', num);
+      // this.messages.splice(num, 1);
     },
     removeMessageWithTiming(context,timestamp) {
       setTimeout(() => {
@@ -42,6 +45,15 @@ export default new Vuex.Store({
           }
         });
       }, 5000);
+      // const vm = this;
+      // setTimeout(() => {
+      //     vm.messages.forEach((item, i) => {
+      //     if (item.timestamp === timestamp) {
+      //         vm.messages.splice(i, 1);
+      //     }
+      //     });
+      // }, 5000);
+      // },
     },
   },
   //寫入資料
@@ -59,6 +71,11 @@ export default new Vuex.Store({
         status,
         timestamp,
       });
+      // this.messages.push({
+      //     message,
+      //     status,
+      //     timestamp,
+      // });
     },
     REMOVEMESSAGE(state, num) {
       state.messages.splice(num, 1);

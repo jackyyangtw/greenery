@@ -1,10 +1,17 @@
 <template>
   <div>
+    <div class="jumbotron jumbotron-fluid  bg d-flex justify-content-center align-items-center">
+      <div class="container  mt-5">
+        <div class="p-4 header_title">
+          <h1 class="text-center">購物市集</h1>
+        </div>
+      </div>
+    </div>
     <div class="container main-content mb-3 mt-3">
       <div class="row position-relative">
         <div class="col-md-3">
           <!-- 左側選單 (List group) -->
-          <ul class="list-group sticky-top">
+          <ul class="list-group sticky-top list">
             <li class="list-group-item list-group-item-action type text-center bg-warning">商品種類</li>
             <a class="list-group-item list-group-item-action type "
               href="#" @click.prevent="searchText = item"
@@ -204,4 +211,16 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/assets/sass/Shop.sass'
+@import '@/assets/sass/_grid.sass'
+
+.bg
+  background-image: url('../../assets/shopHeader.jpeg')
+  background-size: cover
+  background-position: center center
+  min-height: 350px
+.header_title
+  letter-spacing: 16px
+  color: lighten(grey,80)
+  +ipad
+    width: 100% !important
 </style>

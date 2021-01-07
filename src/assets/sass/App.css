@@ -1,14 +1,5 @@
-@charset "UTF-8";
-.jumbotron-bg {
-  /* banners.png */
-  background-image: url("./assets/header.jpg");
-  background-size: cover;
-  background-position: center center;
-  min-height: 400px;
-}
-
 nav {
-  z-index: 10;
+  z-index: 100;
 }
 
 nav h6 {
@@ -49,53 +40,6 @@ nav td {
   }
 }
 
-/* 半透明背景 */
-.bg-lighter {
-  background-color: rgba(255, 255, 255, 0.45);
-}
-
-/* 購物車按鈕 */
-.btn-cart {
-  background-color: transparent;
-  position: relative;
-}
-
-.trashCan i:hover, .trashCan i:active {
-  color: #2c786c;
-}
-
-/* 購物車按鈕定位 */
-.btn-cart .badge {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-}
-
-.main-content {
-  min-height: calc(100vh - 56px - 176px);
-}
-
-.box-shadow {
-  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
-  -webkit-transition: .3s linear;
-  transition: .3s linear;
-}
-
-.box-shadow:hover {
-  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.dropdown-menu-right {
-  right: 0;
-  left: auto;
-}
-
-.alert-rounded {
-  border-radius: 50px;
-}
-
 .page-enter-active, .page-leave-active {
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -128,36 +72,5 @@ footer .ig {
 footer i {
   font-size: 30px;
   margin: 0 0.25em;
-}
-
-.drop {
-  -webkit-animation: drop 2s infinite;
-          animation: drop 2s infinite;
-}
-
-@-webkit-keyframes drop {
-  0% {
-    opacity: 1;
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-  }
-}
-
-@keyframes drop {
-  0% {
-    opacity: 1;
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-  }
 }
 /*# sourceMappingURL=App.css.map */
