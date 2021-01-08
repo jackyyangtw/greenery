@@ -145,6 +145,23 @@ export default {
     };
   },
   computed: {
+    filterProducts () {
+      const vm = this
+      if (vm.search) {
+        vm.search = false
+        return vm.products.filter(function (item) {
+          return item.title.match(vm.keyPoint)
+        })
+      } else if (vm.category === 'All') {
+        return vm.products
+      } else if (vm.category !== 'All') {
+        return vm.products.filter(function (item) {
+          return item.category === vm.category
+        })
+      } else {
+        return vm.products
+      }
+    },
     filterData() {
       const vm = this;
       if (vm.searchText) {

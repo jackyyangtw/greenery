@@ -16,12 +16,7 @@ export default{
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
       //{ root: true } 讀取全域的資料
       context.commit('LOADING',true , { root: true })
-      console.log("這是context",context)
       axios.get(url).then((response) => {
-        console.log(response)
-        //response.data.products 傳給 PRODUCTS
-        context.commit('PRODUCTS',response.data.products)
-        //response.data.products 傳給 CATEGORIES
         context.commit('CATEGORIES',response.data.products)
         console.log('取得產品列表:', response);
         context.commit('GET_PRODUCTS', response)
@@ -50,6 +45,7 @@ export default{
           }
         })
       })
+      console.log('state.product',state.products)
     },
     CATEGORIES(state,payload){
       //定義 categories 是一個新的物件

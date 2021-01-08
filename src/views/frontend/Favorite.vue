@@ -44,6 +44,9 @@
                         @click="addtoCart(item.id)">
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                       </button>
+                      <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
+                        <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -72,13 +75,20 @@ export default {
     ...mapGetters('productsModules',['categories','products']),
     favoriteData() {
       const vm = this
+      const list = []
+      vm.myFavorite.forEach((item)=>{
+        list.push(item.id)
+      })
       return vm.products.filter(function(item) {
-        return vm.myFavorite.indexOf(item.id) > -1
+        return list.indexOf(item.id) > -1
       })
     },
   },
   methods: {
     ...mapActions('productsModules',['getProducts']),
+    addMyFavorite (id){
+      this.$store.dispatch('heartModules/addMyFavorite',id)
+    },
     //帶多個參數必須使用dispatch
     addtoCart(id, qty = 1) {
       this.$store.dispatch('cartsModules/addtoCart',{id,qty})
