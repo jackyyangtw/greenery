@@ -64,13 +64,8 @@ export default new Vuex.Store({
       state.isLoading = status;
       console.log("這是status",status)
     },
-    MESSAGE(state,{message,status}) {
-      const timestamp = Math.floor(new Date() / 1000);
-      state.messages.push({
-        message,
-        status,
-        timestamp,
-      });
+    MESSAGE(state,status) {
+      state.messages.push(status);
       // this.messages.push({
       //     message,
       //     status,

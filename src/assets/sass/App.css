@@ -40,6 +40,14 @@ nav td {
   }
 }
 
+.login_icon {
+  font-size: 25px;
+}
+
+.hover:hover {
+  border-bottom: 1px solid #FFC107;
+}
+
 .page-enter-active, .page-leave-active {
   -webkit-transition: 0.5s;
   transition: 0.5s;

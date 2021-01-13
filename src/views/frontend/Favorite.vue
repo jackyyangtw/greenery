@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="jumbotron jumbotron-fluid bg d-flex justify-content-center align-item-center">
-      <div class="container p-5 ">
-        <div class="header_title p-4 mt-5">
+    <div class="jumbotron jumbotron-fluid  bg d-flex justify-content-center align-items-center">
+      <div class="container mt-5">
+        <div class="p-4 header_title">
           <h1 class="text-center">收藏清單</h1>
         </div>
       </div>
@@ -10,7 +10,7 @@
     <div class="container main-content mb-3 mt-3">
       <div class="row position-relative">
         <!-- 子頁面 -->
-        <div class="col-md-9" id="childPage">
+        <div class="col-md-12" id="childPage">
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
@@ -25,7 +25,7 @@
                   </div>
                 </div>
               </div>              
-              <div class="col-md-6 mb-4 col-sm-6 col-12 col-lg-4" v-for="(item) in favoriteData" :key="item.id">
+              <div class="col-md-6 mb-4 col-sm-6 col-12 col-lg-3" v-for="(item) in favoriteData" :key="item.id">
                 <div class="card border-2 box-shadow text-center img-fluid productCard " v-if="item.id">
                   <div class="overflow-hidden">
                     <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="getProduct(item.id)">
@@ -40,13 +40,15 @@
                         <p :class="{ discounted: item.price >0}" class="card-text text-right mb-1">NT${{ item.origin_price }}元/{{item.unit}}</p>
                         <p class="card-text text-left text-primary m-0" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
                       </div>
-                      <button class="btn btn-outline-secondary btn-sm"
-                        @click="addtoCart(item.id)">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                      </button>
-                      <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
-                        <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
-                      </a>
+                      <div>
+                        <button class="btn btn-outline-secondary btn-sm mr-3"
+                          @click="addtoCart(item.id)">
+                          <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </button>
+                        <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
+                          <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg': item.isLike}"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -141,8 +143,8 @@ export default {
 .bg
   background-image: url('../../assets/favoriteHeader.jpeg')
   background-size: cover
-  background-position: 25% 70%
-  min-height: 400px
+  background-position: 25% 73%
+  min-height: 350px
 .bg-lighter 
   background-color: rgba(255, 255, 255, .45)
   letter-spacing: 16px

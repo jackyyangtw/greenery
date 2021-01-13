@@ -28,13 +28,13 @@ export default{
   //操作狀態，可用常數命名(大寫)，state是上方的state
   //不可執行非同步狀態(ajax、settimeout等等)，會造成state和payload不相等，造成除錯困難
   mutations: {
-    PRODUCTS(state,payload){
-      state.products = payload;
-      //商品陣列 response.data.products
-      console.log("這是PRODUCTS的payload",payload)
-    },
-    GET_PRODUCTS (state, res) {
-      state.products = res.data.products
+    // PRODUCTS(state,payload){
+    //   state.products = payload;
+    //   //商品陣列 response.data.products
+    //   console.log("這是PRODUCTS的payload",payload)
+    // },
+    GET_PRODUCTS (state, response) {
+      state.products = response.data.products
       state.products.forEach(function (item) {
         Vue.set(item, 'isLike', false)
       })
@@ -45,7 +45,6 @@ export default{
           }
         })
       })
-      console.log('state.product',state.products)
     },
     CATEGORIES(state,payload){
       //定義 categories 是一個新的物件

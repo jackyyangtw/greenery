@@ -10,6 +10,7 @@ import Login from '@/views/frontend/Login'
 import FrontOrders from '@/views/frontend/FrontOrders'
 import FrontCheckout from '@/views/frontend/FrontCheckout'
 import Favorite from '@/views/frontend/Favorite'
+import Coupon from '@/views/frontend/Coupon'
 
 //backend
 import Dashboard from '@/views/backend/Dashboard'
@@ -64,6 +65,14 @@ export default new VueRouter({
       path: '/favorite',
       name: 'Favorite',
       component: Favorite, 
+    },
+    {
+      //元件呈現名稱
+      name:'Coupon',
+      //對應虛擬路徑(網址上的)
+      path:'/coupon',
+      //對應元件
+      component: Coupon,
     },
     //後台------------------------------------------------
     {

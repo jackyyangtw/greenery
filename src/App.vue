@@ -2,12 +2,14 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-light bg-light w-100">
-      <router-link class="navbar-brand" to="/home">
+      <router-link class="navbar-brand mr-4" to="/home">
         Greenery
       </router-link>
-      <router-link class="navbar-brand ml-4 desktop text-primary" to="/home"><i class="fas fa-globe-asia mr-1"></i>關於我們</router-link>
-      <router-link class="navbar-brand ml-2 desktop text-primary" to="/shop"><i class="fas fa-clipboard-list mr-1"></i>所有商品</router-link>
-      <router-link class="navbar-brand ml-2 desktop text-primary" to="/favorite"><i class="fas fa-heart mr-1"></i>收藏清單</router-link>
+      <!-- desktop 只有在桌機顯示 -->
+      <router-link class="desktop nav-link text-primary mr-3 hover" to="/home">關於我們</router-link>
+      <router-link class="desktop nav-link text-primary mr-3 hover" to="/shop">所有商品</router-link>
+      <router-link class="desktop nav-link text-primary mr-3 hover" to="/favorite">收藏清單</router-link>
+      <router-link class="desktop nav-link text-primary mr-3 hover" to="/coupon">專屬優惠</router-link>
       <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
       <!-- 下拉選單按鈕 -->
       <div class="dropdown ml-auto d-flex align-items-center">
@@ -16,7 +18,9 @@
           <span class="badge badge-pill badge-danger">{{cart.carts.length}}</span>
           <span class="sr-only">unread messages</span>
         </button>
-        <router-link class="navbar-brand text-primary" to="/login">登入</router-link>
+        <router-link class="navbar-brand text-info login_icon" to="/login">
+          <i class="fas fa-user"></i>
+        </router-link>
         <!-- 購物清單 -->
         <!-- dropdown-menu 是bootstrap的class -->
         <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px"
@@ -47,12 +51,14 @@
               </tr>
             </tfoot>
           </table>
-          <button class="btn btn-primary btn-block" v-if="cart.carts.length">
-            <router-link to="/front_orders">
+        
+          <router-link to="/front_orders">
+            <button class="btn btn-primary btn-block" v-if="cart.carts.length">
               <i class="fa fa-cart-plus text-light mr-2" aria-hidden="true"></i> 
               <span class="text-light">結帳去</span>
-            </router-link>
-          </button>
+            </button>
+          </router-link>
+        
         </div>
       </div>
       <!-- 漢堡選單 -->
@@ -61,9 +67,10 @@
         <div class="collapse navbar-collapse hamburg_list"
             id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active"><router-link class="navbar-brand nav-link" to="/">關於我們</router-link></li>
-                <li class="nav-item"><router-link class="navbar-brand nav-link" to="/shop">所有商品</router-link></li>
-                <li class="nav-item"><router-link class="navbar-brand nav-link" to="/favorite">收藏清單</router-link></li>
+                <li class="nav-item active"><router-link class=" nav-link" to="/">關於我們</router-link></li>
+                <li class="nav-item"><router-link class=" nav-link" to="/shop">所有商品</router-link></li>
+                <li class="nav-item"><router-link class=" nav-link" to="/favorite">收藏清單</router-link></li>
+                <li class="nav-item"><router-link class=" nav-link" to="/coupon">專屬優惠</router-link></li>
             </ul>
         </div>
       </div>

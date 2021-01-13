@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="jumbotron jumbotron-fluid  bg d-flex justify-content-center align-items-center">
-      <div class="container  mt-5">
+      <div class="container mt-5">
         <div class="p-4 header_title">
           <h1 class="text-center">購物市集</h1>
         </div>
@@ -63,13 +63,15 @@
                         <p :class="{ discounted: item.price >0}" class="card-text text-right mb-1">NT${{ item.origin_price }}元/{{item.unit}}</p>
                         <p class="card-text text-left text-primary m-0" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
                       </div>
-                      <button class="btn btn-outline-secondary btn-sm"
-                        @click="addtoCart(item.id)">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                      </button>
-                      <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
-                        <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
-                      </a>
+                      <div>
+                        <button class="btn btn-outline-secondary btn-sm mr-3"
+                          @click="addtoCart(item.id)">
+                          <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </button>
+                        <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
+                          <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -141,27 +143,10 @@ export default {
   data() {
     return {
       searchText: '',
-      product: {}
+      product: {},
     };
   },
   computed: {
-    filterProducts () {
-      const vm = this
-      if (vm.search) {
-        vm.search = false
-        return vm.products.filter(function (item) {
-          return item.title.match(vm.keyPoint)
-        })
-      } else if (vm.category === 'All') {
-        return vm.products
-      } else if (vm.category !== 'All') {
-        return vm.products.filter(function (item) {
-          return item.category === vm.category
-        })
-      } else {
-        return vm.products
-      }
-    },
     filterData() {
       const vm = this;
       if (vm.searchText) {
@@ -195,7 +180,8 @@ export default {
       })
     },
     addMyFavorite (id) {
-      this.$store.dispatch('heartModules/addMyFavorite',{id})
+      //id 不能加入大括號，會出錯!
+      this.$store.dispatch('heartModules/addMyFavorite',id)
     },
   },
   created() {
