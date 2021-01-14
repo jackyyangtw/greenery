@@ -14,11 +14,18 @@ import VeeValidate from 'vee-validate'
 import zhTW from 'vee-validate/dist/locale/zh_TW'
 import VueI18n from 'vue-i18n'
 import store from './store'
-
+import clipboard from 'clipboard'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 //將跨域的cookie存入vue的伺服器
 axios.defaults.withCredentials = true;
 
+AOS.init({
+  once: true,
+  duration: 800
+})
+Vue.prototype.clipboard = clipboard
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios);
 Vue.use(VueI18n)

@@ -135,11 +135,13 @@ export default {
       const coupon = {
         code: vm.cupon_code
       }
-      // vm.isLoading = true
       this.$http.post(api,{data:coupon}).then((response)=>{
-        console.log("是否套用優惠券",response)
-        vm.getCart()
-        // vm.isLoading = false
+        if (response.data.success) {
+          vm.getCart()
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' })
+        } else {
+          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' })
+        }
       })         
     },
     createOrder(){

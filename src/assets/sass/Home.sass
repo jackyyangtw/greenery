@@ -1,7 +1,7 @@
 // css animate
-  
+
 @import '@/assets/sass/_reset.sass'
-  
+
 $bg_white: #faf5e4
 $bg_lightGreen: #2c786c
 $bg_darkGreen: #004445
@@ -17,9 +17,9 @@ $item_white: darken(#eee,8)
   @media(max-width: 768px)
     @content
 @mixin iphone8plus
-	@media(max-width: 414px)
-		@content
-    
+  @media(max-width: 414px)
+    @content
+
 @mixin fcenter
   display: flex
   justify-content: center
@@ -50,7 +50,7 @@ p
     font-size: 18px
 
 .wrap
-  max-width: 1200px
+  max-width: 1400px
   margin: 0 auto
   overflow: hidden
 .toTop
@@ -62,13 +62,13 @@ p
   i
     font-size: 50px
 #bugQue
-  padding-top: 15%  
+  padding-top: 15%
   background-color: $bg_white
   position: relative
   overflow: hidden
   .title
-    +fcenter
     margin-bottom: 15%
+    +fcenter
     @include ipad
       flex-direction: column-reverse
 
@@ -93,7 +93,7 @@ p
       font-size: 20px
     .earth
       color: $item_lightGreen
-      font-size: 100px 
+      font-size: 100px
   .mountains
     position: relative
     bottom: -5em
@@ -125,7 +125,7 @@ p
     text-align: center
     color: $font_white
     .subtitle
-      margin-top: -1em 
+      margin-top: -1em
       opacity: 0.8
   .cards
     margin-top: 2em
@@ -147,7 +147,7 @@ p
         line-height: 1.8
         text-align: center
         .middel
-          margin: 1em 0 
+          margin: 1em 0
           font-weight: 400
       @include ipad
         max-width: 90%
@@ -188,9 +188,10 @@ p
     margin-bottom: 5em
 
     .icons
-      +fcenter
       margin-top: 10%
       animation: iconsMove 3s infinite
+      +fcenter
+
       .water
         color: $item_blue
       .fish
@@ -228,7 +229,7 @@ p
     transform: translateY(50px)
   100%
     transform: translateY(-10px)
-  
+
 @keyframes sunroll
   0%
     transform: rotate(0deg)
@@ -249,8 +250,9 @@ p
     transform: translateX(30px)
 #danger
   background-color: $bg_lightGreen
+  padding: 3em 1em
   +fcenter
-  padding: 3em 1em 
+
   img
     width: 100%
   h2
@@ -270,10 +272,10 @@ p
   .content
     width: 90%
     margin: 0 auto
-    +fcenter
     margin-bottom: 3em
     color: $font_white
     line-height: 2
+    +fcenter
     img
       max-width: 40%
       margin-right: 1em
@@ -374,7 +376,7 @@ p
       font-size: 20px
     .earth
       color: $item_lightGreen
-      font-size: 100px 
+      font-size: 100px
   .mountains
     position: relative
     bottom: -5em
@@ -427,7 +429,7 @@ p
         h2
           margin-top: 0.5em
         .middel
-          margin: 1em 0 
+          margin: 1em 0
           font-weight: 400
       @include ipad
         max-width: 60%
@@ -438,7 +440,7 @@ p
 .animated_fadeIn
   opacity: 0
   transform: translateY(50px)
-  transition: 1s 
+  transition: 1s
 .fadeIn
   opacity: 1
   transform: translateY(0px)
@@ -476,9 +478,3 @@ p
   transition: 1s
 .scale
   transform: scale(1.3)
-
-
-
-
-
-
