@@ -3,7 +3,7 @@
     <div class="jumbotron jumbotron-fluid bg d-flex justify-content-center align-items-center">
       <div class="container">
         <div class="header_title p-4">
-          <h1 class="text-center text-warning">專屬優惠</h1>
+          <h1 class="text-center text-warning text_header">專屬優惠</h1>
         </div>
       </div>
     </div>
@@ -115,6 +115,5 @@ export default {
 .copyCoupon
   &:hover
     cursor: pointer
-
 
 </style>

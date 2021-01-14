@@ -3,14 +3,14 @@
     <div class="wrap">
     <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
       <div class="container">
-        <div class="p-5 bg-lighter">
+        <div class="p-5 text-light text_header">
           <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
-          <p class="lead text-center">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
+          <p class="lead text-center font-weight-bold">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
           <div>
-            <p class="h5">探索Greenery吧~</p>
-            <p class="text-center h5 drop">V</p>
+            <p class="h5 header_text text-light">探索Greenery吧~</p>
+            <p class="text-center h5 drop text-light">V</p>
           </div>
         </div>
       </div>
@@ -239,9 +239,6 @@
   background-size: cover
   background-position: center center
   min-height: 400px
-/* 半透明背景 */
-.bg-lighter 
-  background-color: rgba(255, 255, 255, .45)
 
 /* 購物車按鈕 */
 .btn-cart 

@@ -3,7 +3,8 @@
     <div class="jumbotron jumbotron-fluid  bg d-flex justify-content-center align-items-center">
       <div class="container mt-5">
         <div class="p-4 header_title">
-          <h1 class="text-center">購物市集</h1>
+          <h1 class="text-center header_text">購物市集</h1>
+          <h3 class="text-center header_text header_subtitle mt-3">是時候跟小強說再見了!</h3>
         </div>
       </div>
     </div>

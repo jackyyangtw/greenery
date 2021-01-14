@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,CAAC,CAAC;EACA,gBAAgB,EAHP,OAAO;EAIhB,QAAQ,EAAE,MAAM;CAAG;;AACrB,AAAA,MAAM,CAAC;EACL,MAAM,EAAE,GAAG,CAAC,KAAK,CALH,OAAO;CAKc;;AAErC,AAAA,UAAU,CAAC;EACT,eAAe,EAAE,YAAY;CAAG;;AAClC,AAAA,OAAO,CAAC;EACN,KAAK,EAAE,gBAAgB;CAAG",
-    "sources": [
-        "FrontOrders.sass"
-    ],
-    "names": [],
-    "file": "FrontOrders.css"
-}

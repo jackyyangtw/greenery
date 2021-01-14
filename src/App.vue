@@ -127,6 +127,8 @@ export default {
 <style lang="sass">
 @import '@/assets/sass/_reset.sass'
 @import "~bootstrap/scss/bootstrap";
+.text_header
+  text-shadow: 3px 3px 3px rgba(black,0.5)
 </style>
 
 <style lang="sass" scoped>
