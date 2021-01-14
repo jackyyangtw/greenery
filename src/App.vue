@@ -48,7 +48,7 @@
             </tfoot>
           </table>
           <button class="btn btn-primary btn-block" v-if="cart.carts.length">
-            <router-link to="/front_orders">
+            <router-link to="/front_orders" class="pay">
               <i class="fa fa-cart-plus text-light mr-2" aria-hidden="true"></i> 
               <span class="text-light">結帳去</span>
             </router-link>
