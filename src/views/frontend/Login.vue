@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <form class="form-signin" @submit.prevent="signin">
+    <form class="form-signin mb-3" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">管理登入</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" v-model="user.username"
@@ -21,7 +21,6 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
     </form>
   </div>
 </template>

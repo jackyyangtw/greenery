@@ -19,6 +19,16 @@ h4
   font-size: 18px
 p
   font-size: 16px
+.bg
+  background-image: url('../../assets/shopHeader.jpeg')
+  background-size: cover
+  background-position: center center
+  min-height: 350px
+.header_title
+  letter-spacing: 16px
+  color: lighten(grey,80)
+  +ipad
+    width: 100% !important
 .priductPic
   cursor: pointer
   height: 300px
@@ -53,3 +63,8 @@ p
   text-shadow: 3px 3px 3px rgba(black,0.5)
 .header_subtitle
   opacity: 0.9
+
+.heart
+  cursor: pointer
+  &::active
+    transform: scale(1.2)

@@ -23,18 +23,33 @@ export default{
         context.commit('LOADING',false, { root: true });
       });
     },
+    addMyFavorite (context, id) {
+      context.commit('ADD_MYFAVORITE', id)
+    }
   },
   //寫入資料
   //操作狀態，可用常數命名(大寫)，state是上方的state
   //不可執行非同步狀態(ajax、settimeout等等)，會造成state和payload不相等，造成除錯困難
   mutations: {
-    // PRODUCTS(state,payload){
-    //   state.products = payload;
-    //   //商品陣列 response.data.products
-    //   console.log("這是PRODUCTS的payload",payload)
-    // },
-    GET_PRODUCTS (state, response) {
-      state.products = response.data.products
+    ADD_MYFAVORITE (state, id) {
+      state.products.forEach(function (item) {
+        if (item.id === id) {
+          item.isLike = !item.isLike
+        }
+      })
+      const index = state.myFavorite.findIndex(function (item) {
+        return item === id
+      })
+      if (index === -1) {
+        state.myFavorite.push(id)
+      } else {
+        state.myFavorite.splice(index, 1)
+      }
+      localStorage.removeItem('myFavorite')
+      // localStorage.setItem('myFavorite', JSON.stringify(state.myFavorite))
+    },
+    GET_PRODUCTS (state, res) {
+      state.products = res.data.products
       state.products.forEach(function (item) {
         Vue.set(item, 'isLike', false)
       })

@@ -8,10 +8,6 @@ export default{
   actions: {
     addMyFavorite (context, id) {
       context.commit('ADD_MYFAVORITE', id)
-      context.dispatch('updateMessage',{
-        message:'加入成功',
-        status: 'success'
-      },{ root: true })
     }
   },
   mutations: {

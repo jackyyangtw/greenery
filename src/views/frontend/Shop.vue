@@ -27,7 +27,6 @@
             </a>
           </ul>
         </div>
-
         <!-- 子頁面 -->
         <div class="col-md-9" id="childPage">
           <div class="d-flex mb-4">
@@ -49,7 +48,7 @@
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
-              <div class="col-md-6 mb-4 col-sm-6 col-12 col-lg-4" v-for="(item) in filterData" :key="item.id">
+              <div class="col-md-6 mb-4 col-sm-6 col-6 col-lg-4" v-for="(item) in filterData" :key="item.id">
                 <div class="card border-2 box-shadow text-center img-fluid productCard ">
                   <div class="overflow-hidden">
                     <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="getProduct(item.id)">
@@ -69,7 +68,7 @@
                           @click="addtoCart(item.id)">
                           <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         </button>
-                        <a class="text-primary" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
+                        <a class="text-primary heart" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
                           <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
                         </a>
                       </div>
@@ -137,7 +136,6 @@
 
 <script>
 import $ from 'jquery'
-import { mapGetters,mapActions } from 'vuex'
 export default {
   //開發者工具上顯示的名稱
   name: 'Shop',
@@ -158,11 +156,20 @@ export default {
       }
       return this.products;
     },
-    ...mapGetters('heartModules',['myFavorite']),
-    ...mapGetters('productsModules',['categories','products']),
+    isLoading () {
+      return this.$store.state.isLoading
+    },
+    products () {
+      return this.$store.state.products
+    },
+    myFavorite () {
+      return this.$store.state.myFavorite
+    },
+    categories (){
+      return this.$store.state.categories
+    }
   },
   methods: {
-    ...mapActions('productsModules',['getProducts']),
     //帶多個參數必須使用dispatch
     addtoCart(id, qty = 1) {
       this.$store.dispatch('cartsModules/addtoCart',{id,qty})
@@ -180,9 +187,14 @@ export default {
         this.$store.dispatch('updateLoading',false)
       })
     },
+    getProducts () {
+      this.$store.dispatch('getProducts')
+    },
+    getCart () {
+      this.$store.dispatch('getCart')
+    },
     addMyFavorite (id) {
-      //id 不能加入大括號，會出錯!
-      this.$store.dispatch('heartModules/addMyFavorite',id)
+      this.$store.dispatch('addMyFavorite', id)
     },
   },
   created() {
@@ -217,14 +229,4 @@ export default {
 @import '@/assets/sass/Shop.sass'
 @import '@/assets/sass/_grid.sass'
 
-.bg
-  background-image: url('../../assets/shopHeader.jpeg')
-  background-size: cover
-  background-position: center center
-  min-height: 350px
-.header_title
-  letter-spacing: 16px
-  color: lighten(grey,80)
-  +ipad
-    width: 100% !important
 </style>
