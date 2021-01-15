@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap"
 @import "@/assets/sass/_reset.sass"
 @mixin ipad
   @media(max-width: 768px)
@@ -19,6 +19,16 @@ h4
   font-size: 18px
 p
   font-size: 16px
+.bg
+  background-image: url('../../assets/shopHeader.jpeg')
+  background-size: cover
+  background-position: center center
+  min-height: 350px
+.header_title
+  letter-spacing: 16px
+  color: lighten(grey,80)
+  +ipad
+    width: 100% !important
 .priductPic
   cursor: pointer
   height: 300px
@@ -32,6 +42,8 @@ p
   line-height: 2
 .discounted
   text-decoration: line-through
+.list
+  z-index: 10
 .type
   border-style: dashed
   border-width: medium
@@ -47,4 +59,12 @@ p
 .text-content
   margin-top: 0.5em
   line-height: 2
-    
+.header_text
+  text-shadow: 3px 3px 3px rgba(black,0.5)
+.header_subtitle
+  opacity: 0.9
+
+.heart
+  cursor: pointer
+  &::active
+    transform: scale(1.2)

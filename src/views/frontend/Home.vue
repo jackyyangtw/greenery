@@ -1,6 +1,20 @@
 <template>
   <div>
     <div class="wrap">
+    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
+      <div class="container">
+        <div class="p-5 text-light text_header">
+          <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
+          <p class="lead text-center font-weight-bold">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-5">
+          <div>
+            <p class="h5 header_text text-light">探索Greenery吧~</p>
+            <p class="text-center h5 drop text-light">V</p>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="toTop bg-light p-2 rounded-circle">
         <a href="#searchBar"><i class="fas fa-arrow-up"></i></a>
       </div>
@@ -219,6 +233,54 @@
 <style lang="sass" scoped>
 @import "~bootstrap/scss/bootstrap";
 @import '@/assets/sass/Home.sass'
+.jumbotron-bg 
+  /* banners.png */
+  background-image: url('../../assets/header.jpg')
+  background-size: cover
+  background-position: center center
+  min-height: 400px
+
+/* 購物車按鈕 */
+.btn-cart 
+  background-color: transparent
+  position: relative
+.trashCan
+  i
+    &:hover,&:active
+      color: $item_lightGreen
+
+/* 購物車按鈕定位 */
+.btn-cart .badge 
+  position: absolute
+  top: 1px
+  right: 1px
+
+
+.main-content 
+  min-height: calc(100vh - 56px - 176px)
+
+.box-shadow 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .05)
+  transition: .3s linear
+
+.box-shadow:hover 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, .08)
+
+.dropdown-menu-right 
+  right: 0
+  left: auto
+
+.alert-rounded 
+  border-radius: 50px
+.drop
+  animation: drop 2s infinite
+@keyframes drop
+  0%
+    opacity: 1
+    transform: translateY(0px)
+  100%
+    opacity: 0
+    transform: translateY(20px)
 
 </style>
 
@@ -232,7 +294,9 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
   name: 'MyComponent',
-  components: { VueSlickCarousel },
+  components: { 
+    VueSlickCarousel,
+  },
   data(){
     return {
       settings:{
@@ -343,9 +407,6 @@ export default {
     })
   }
 }
-
-
-
 </script>
 
 

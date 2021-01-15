@@ -1,10 +1,18 @@
 <template>
   <div>
+    <div class="jumbotron jumbotron-fluid  bg d-flex justify-content-center align-items-center">
+      <div class="container mt-5">
+        <div class="p-4 header_title">
+          <h1 class="text-center header_text">購物市集</h1>
+          <h3 class="text-center header_text header_subtitle mt-3">是時候跟小強說再見了!</h3>
+        </div>
+      </div>
+    </div>
     <div class="container main-content mb-3 mt-3">
       <div class="row position-relative">
         <div class="col-md-3">
           <!-- 左側選單 (List group) -->
-          <ul class="list-group sticky-top">
+          <ul class="list-group sticky-top list">
             <li class="list-group-item list-group-item-action type text-center bg-warning">商品種類</li>
             <a class="list-group-item list-group-item-action type "
               href="#" @click.prevent="searchText = item"
@@ -19,7 +27,6 @@
             </a>
           </ul>
         </div>
-
         <!-- 子頁面 -->
         <div class="col-md-9" id="childPage">
           <div class="d-flex mb-4">
@@ -41,7 +48,7 @@
           <div class="tab-pane" id="list-gift">
             <div class="row align-items-stretch">
               <!-- 商品 -->
-              <div class="col-md-6 mb-4 col-sm-6 col-12 col-lg-4" v-for="(item) in filterData" :key="item.id">
+              <div class="col-md-6 mb-4 col-sm-6 col-6 col-lg-4" v-for="(item) in filterData" :key="item.id">
                 <div class="card border-2 box-shadow text-center img-fluid productCard ">
                   <div class="overflow-hidden">
                     <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="getProduct(item.id)">
@@ -56,10 +63,15 @@
                         <p :class="{ discounted: item.price >0}" class="card-text text-right mb-1">NT${{ item.origin_price }}元/{{item.unit}}</p>
                         <p class="card-text text-left text-primary m-0" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
                       </div>
-                      <button class="btn btn-outline-secondary btn-sm"
-                        @click="addtoCart(item.id)">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                      </button>
+                      <div>
+                        <button class="btn btn-outline-secondary btn-sm mr-3"
+                          @click="addtoCart(item.id)">
+                          <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </button>
+                        <a class="text-primary heart" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
+                          <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -124,14 +136,13 @@
 
 <script>
 import $ from 'jquery'
-import { mapGetters,mapActions } from 'vuex'
 export default {
   //開發者工具上顯示的名稱
   name: 'Shop',
   data() {
     return {
       searchText: '',
-      product: {}
+      product: {},
     };
   },
   computed: {
@@ -145,10 +156,20 @@ export default {
       }
       return this.products;
     },
-    ...mapGetters('productsModules',['categories','products'])
+    isLoading () {
+      return this.$store.state.isLoading
+    },
+    products () {
+      return this.$store.state.products
+    },
+    myFavorite () {
+      return this.$store.state.myFavorite
+    },
+    categories (){
+      return this.$store.state.categories
+    }
   },
   methods: {
-    ...mapActions('productsModules',['getProducts']),
     //帶多個參數必須使用dispatch
     addtoCart(id, qty = 1) {
       this.$store.dispatch('cartsModules/addtoCart',{id,qty})
@@ -165,6 +186,15 @@ export default {
         $("#exampleModalLong").modal("show")
         this.$store.dispatch('updateLoading',false)
       })
+    },
+    getProducts () {
+      this.$store.dispatch('getProducts')
+    },
+    getCart () {
+      this.$store.dispatch('getCart')
+    },
+    addMyFavorite (id) {
+      this.$store.dispatch('addMyFavorite', id)
     },
   },
   created() {
@@ -197,4 +227,6 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/assets/sass/Shop.sass'
+@import '@/assets/sass/_grid.sass'
+
 </style>

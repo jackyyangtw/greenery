@@ -56,10 +56,39 @@
         </div>
       </form>
     </div>
+    <div class="modal fade" id="successAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <i class="fas fa-check text-success icon"></i>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mb-5">
+            感謝您的購買，已成功付款!
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <router-link to="/shop" @click="hideModal">
+              <button class="btn btn-primary text-dark mr-2">
+                繼續看看
+              </button>
+            </router-link>
+            <router-link to="/home" @click="hideModal">
+              <button class="btn btn-primary text-dark">
+                回首頁
+              </button>
+            </router-link>
+          </div>
+          <button class="btn"></button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   data(){
     return{
@@ -89,9 +118,12 @@ export default {
         console.log(response)
         vm.isLoading = false
         if(response.data.success){
-          vm.getOrder()
+          $('#successAlert').modal('show')
         }
       })        
+    },
+    hideModal(){
+      $('#successAlert').modal('dispose')
     }
   },
   created(){
@@ -106,4 +138,6 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/assets/sass/FrontCheckout.sass'
+.icon
+  font-size: 50px
 </style>

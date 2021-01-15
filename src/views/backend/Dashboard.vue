@@ -2,8 +2,16 @@
 
 <template>
   <div>
-    <Navbar/>
+    
     <Alert/>
+    <div class="jumbotron jumbotron-fluid bg d-flex justify-content-center align-items-center mb-0">
+      <div class="container  mt-5">
+        <div class="p-4 header_title">
+          <h1 class="text-center">管理者平台</h1>
+        </div>
+      </div>
+    </div>
+    <Navbar/>
     <div class="container-fluid">
       <div class="row">
         <Sidebar/> 
@@ -32,3 +40,18 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+@import '@/assets/sass/_grid.sass'
+.bg
+  background-image: url('../../assets/loginHeader.jpeg')
+  background-size: cover
+  background-position: center center
+  min-height: 350px
+.header_title
+  letter-spacing: 16px
+  color: lighten(grey,80)
+  +ipad
+    width: 100% !important
+  
+</style>
