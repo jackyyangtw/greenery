@@ -40,14 +40,10 @@ export default new Vuex.Store({
       context.commit('REMOVEMESSAGE', num);
       // this.messages.splice(num, 1);
     },
-    removeMessageWithTiming(context,timestamp) {
+    removeMessageWithTiming (context, timestamp) {
       setTimeout(() => {
-        context.state.messages.forEach((item, i) => {
-          if (item.timestamp === timestamp) {
-            context.state.messages.splice(i, 1);
-          }
-        });
-      }, 5000);
+        context.commit('REMOVE_MESSAGE_TIMING', timestamp)
+      }, 3000)
     },
     getProducts(context) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
@@ -69,20 +65,27 @@ export default new Vuex.Store({
   //不可執行非同步狀態(ajax、settimeout等等)，會造成state和payload不相等，造成除錯困難
   mutations: {
     ADD_MYFAVORITE (state, id) {
+      //將products陣列中的物件都跑過一次，如果id相同的話就改變item.isLike(true false)
       state.products.forEach(function (item) {
         if (item.id === id) {
           item.isLike = !item.isLike
         }
       })
+      //findIndex尋找陣列中符合的元素，並返回其 index（索引），如果沒有符合的對象，將返回 -1 
       const index = state.myFavorite.findIndex(function (item) {
         return item === id
       })
+      //如果沒有找到索引
       if (index === -1) {
+        //就把id push到 myFavorite
         state.myFavorite.push(id)
       } else {
+        //有找到就刪除myFavorite陣列中的第index物件
         state.myFavorite.splice(index, 1)
       }
+      //將myFavorite陣列變成json，setItem到localStorage
       localStorage.setItem('myFavorite', JSON.stringify(state.myFavorite))
+      console.log('ADD_MYFAVORITE被執行!!!')
     },
     GET_PRODUCTS (state, res) {
       state.products = res.data.products
@@ -118,6 +121,13 @@ export default new Vuex.Store({
     },
     REMOVEMESSAGE(state, num) {
       state.messages.splice(num, 1);
+    },
+    REMOVE_MESSAGE_TIMING (state, timestamp) {
+      state.messages.forEach((item, i) => {
+        if (item.timestamp === timestamp) {
+          state.messages.splice(i, 1)
+        }
+      },3000)
     },
   },
   getters: {

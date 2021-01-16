@@ -6,7 +6,8 @@ export default{
   state: {
     cart: {
       carts:[]
-    }
+    },
+    messages:[],
   },
   actions: {
     getCart(context) {
@@ -67,6 +68,7 @@ export default{
     }
   },
   getters: {
-    cart: state => state.cart
+    cart: state => state.cart,
+    messages: state => state.messages,
   }
 }

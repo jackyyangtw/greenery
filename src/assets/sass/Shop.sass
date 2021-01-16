@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap"
 @import "@/assets/sass/_reset.sass"
+@import "@/assets/sass/_grid.sass"
 @mixin ipad
   @media(max-width: 768px)
     @content
@@ -29,6 +30,10 @@ p
   color: lighten(grey,80)
   +ipad
     width: 100% !important
+.header_text
+  text-shadow: 3px 3px 3px rgba(black,0.5)
+.header_subtitle
+  opacity: 0.9
 .priductPic
   cursor: pointer
   height: 300px
@@ -38,6 +43,9 @@ p
   object-fit: cover
   &:hover
     transform: scale(1.2)
+  @include iphone8plus
+    height: 150px
+
 .card_text
   line-height: 2
 .discounted
@@ -59,12 +67,23 @@ p
 .text-content
   margin-top: 0.5em
   line-height: 2
-.header_text
-  text-shadow: 3px 3px 3px rgba(black,0.5)
-.header_subtitle
-  opacity: 0.9
-
 .heart
   cursor: pointer
   &::active
     transform: scale(1.2)
+.desktop_card_body
+  justify-content: space-between
+  display: flex
+  align-items: center
+@include ipad
+  .mobile_card_title
+    text-align: center
+    @include fcenter
+  .mobile_card_price
+    flex-wrap: wrap
+    flex-direction: column
+@include iphone8plus
+  .mobile
+    width: 100%
+    margin: auto
+    display: none

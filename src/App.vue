@@ -81,7 +81,7 @@
     <transition name="page" mode="out-in">
       <router-view key="$route.path"/>
     </transition>
-    <footer class="text-muted py-5">
+    <footer class="text-muted py-5 footer">
       <div class="container">
         <ul class="list-inline text-center">
           <li class="list-inline-item">© Copright 2020 綠藝盎然</li>
@@ -126,6 +126,7 @@ export default {
 
 <style lang="sass">
 @import '@/assets/sass/_reset.sass'
+@import '@/assets/sass/_grid.sass'
 @import "~bootstrap/scss/bootstrap";
 .text_header
   text-shadow: 3px 3px 3px rgba(black,0.5)

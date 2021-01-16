@@ -54,20 +54,20 @@
                     <img class="card-img-top priductPic" :src="item.imageUrl" alt="Card image cap" @click="getProduct(item.id)">
                   </div>
                   <div class="card-body">
-                    <div class="title d-flex justify-content-between align-items-center">
-                      <h3 class="card-title text-info">{{ item.title }}</h3>
-                      <p class="card-title text-light bg-warning p-1 rounded"> {{item.category}} </p>
+                    <div class="title d-flex desktop_card_body">
+                      <h3 class="card-title text-info mobile_card_title">{{ item.title }}</h3>
+                      <p class="card-title text-light bg-warning p-1 rounded mobile"> {{item.category}} </p>
                     </div>
-                    <div class="content d-flex justify-content-between align-items-center">
+                    <div class="content d-flex justify-content-between align-items-center mobile_card_price">
                       <div class="price">
                         <p :class="{ discounted: item.price >0}" class="card-text text-right mb-1">NT${{ item.origin_price }}元/{{item.unit}}</p>
                         <p class="card-text text-left text-primary m-0" v-if="item.price">NT$ {{item.price}}/{{item.unit}}</p>
                       </div>
-                      <div>
-                        <button class="btn btn-outline-secondary btn-sm mr-3"
+                      <div class="mt-3">
+                        <a class="text-primary mr-3"
                           @click="addtoCart(item.id)">
                           <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </button>
+                        </a>
                         <a class="text-primary heart" @click.prevent="addMyFavorite(item.id)" title="加入最愛">
                           <i class="far fa-heart fa-lg" :class="{'fas fa-heart fa-lg':item.isLike}"></i>
                         </a>

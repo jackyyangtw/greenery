@@ -3,7 +3,7 @@
     <div class="wrap">
     <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
       <div class="container">
-        <div class="p-5 text-light text_header">
+        <div class="text-light text_header">
           <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
           <p class="lead text-center font-weight-bold">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
         </div>
