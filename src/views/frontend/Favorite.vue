@@ -190,7 +190,6 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/assets/sass/Shop.sass'
-@import '@/assets/sass/_grid.sass'
 .bg
   background-image: url('../../assets/favoriteHeader.jpeg')
   background-size: cover

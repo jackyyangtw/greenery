@@ -75,15 +75,14 @@ p
   justify-content: space-between
   display: flex
   align-items: center
-@include ipad
-  .mobile_card_title
-    text-align: center
-    @include fcenter
-  .mobile_card_price
-    flex-wrap: wrap
+  @media screen and ( max-width: 430px )
     flex-direction: column
-@include iphone8plus
+
+@media screen and ( max-width: 430px )
   .mobile
     width: 100%
     margin: auto
     display: none
+  .mobile_card_price
+    flex-wrap: wrap
+    flex-direction: column
