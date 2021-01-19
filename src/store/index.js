@@ -29,8 +29,8 @@ export default new Vuex.Store({
       context.commit('LOADING',status)
     },
     updateMessage(context,{message, status}) {
-      context.commit('MESSAGE',{ message,status })
       const timestamp = Math.floor(new Date() / 1000);
+      context.commit('MESSAGE',{ message,status,timestamp })
       context.dispatch('removeMessageWithTiming',timestamp)
       // const timestamp = Math.floor(new Date() / 1000);
       // this.removeMessageWithTiming(timestamp);
