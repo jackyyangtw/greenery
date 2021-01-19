@@ -121,6 +121,7 @@ export default {
     favoriteData() {
       const vm = this
       return vm.products.filter(function (item) {
+        //vm.myFavorite有找到id的就回傳，有倍加到最愛才會有id
         return vm.myFavorite.indexOf(item.id) > -1
       })
     },
