@@ -69,16 +69,13 @@
             感謝您的購買，已成功付款!
           </div>
           <div class="d-flex justify-content-center align-items-center">
-            <router-link to="/shop" @click="hideModal">
-              <button class="btn btn-primary text-dark mr-2">
-                繼續看看
-              </button>
-            </router-link>
-            <router-link to="/home" @click="hideModal">
-              <button class="btn btn-primary text-dark">
-                回首頁
-              </button>
-            </router-link>
+            <!-- 不可使用router-link會導致router和modal同時作用，會出錯 -->
+            <button class="btn btn-primary text-dark mr-2 " @click="hideModal('shop')">
+              繼續看看
+            </button>
+            <button class="btn btn-primary text-dark" @click="hideModal('home')">
+              回首頁
+            </button>
           </div>
           <button class="btn"></button>
         </div>
@@ -117,13 +114,20 @@ export default {
       this.$http.post(api).then((response)=>{
         console.log(response)
         vm.isLoading = false
+        vm.$store.dispatch('cartsModules/getCart')
         if(response.data.success){
           $('#successAlert').modal('show')
         }
       })        
     },
-    hideModal(){
-      $('#successAlert').modal('dispose')
+    hideModal(url){
+      $('#successAlert').modal('hide')
+      if(url === 'home'){
+        this.$router.push('/home')
+
+      } else {
+        this.$router.push('/shop')
+      }
     }
   },
   created(){
