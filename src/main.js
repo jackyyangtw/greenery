@@ -17,6 +17,7 @@ import store from './store'
 import clipboard from 'clipboard'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import '@master/css';
 
 //將跨域的cookie存入vue的伺服器
 axios.defaults.withCredentials = true;

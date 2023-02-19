@@ -42,7 +42,7 @@ h3
   font-size: 20px
 p
   font-size: 18px
-  margin-bottom: 1em
+  // margin-bottom: 1em
 @include ipad
   h2
     font-size: 26px
@@ -50,7 +50,7 @@ p
     font-size: 18px
 
 .wrap
-  max-width: 1400px
+  // max-width: 1400px
   margin: 0 auto
   overflow: hidden
 .header_text
@@ -134,8 +134,9 @@ p
     cursor: pointer
     .card
       background-color: $bg_white
-      max-width: 60%
-      margin: auto
+      // max-width: 60%
+      margin: 0 1rem
+      // margin: auto
       transition: 0.3s
       &:hover
         box-shadow: 10px 10px 10px rgba(black,0.3)
@@ -151,6 +152,7 @@ p
         .middel
           margin: 1em 0
           font-weight: 400
+          min-height: 80px
       @include ipad
         max-width: 90%
         margin: 0 auto

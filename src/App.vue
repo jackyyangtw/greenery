@@ -1,6 +1,7 @@
 
 <template>
   <div id="app">
+
     <nav class="navbar navbar-light bg-light w-100">
       <router-link class="navbar-brand mr-4" to="/home">
         Greenery
@@ -75,12 +76,15 @@
         </div>
       </div>
     </nav>
+
     <Loading :active.sync="isLoading"></Loading>
     <!-- 轉跳頁面效果 -->
     <Alert/>
+
     <transition name="page" mode="out-in">
       <router-view key="$route.path"/>
     </transition>
+
     <footer class="text-muted py-5 footer">
       <div class="container">
         <ul class="list-inline text-center">
@@ -104,6 +108,7 @@
 <script>
 import { mapGetters,mapActions } from 'vuex'
 import Alert from "@/components/AlertMessage";
+
 export default {
   name: 'App',
   components: {

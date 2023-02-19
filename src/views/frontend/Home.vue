@@ -1,20 +1,20 @@
 <template>
   <div>
     <div class="wrap">
-    <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end m-0 p-5">
-      <div class="container">
-        <div class="text-light text_header">
-          <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
-          <p class="lead text-center font-weight-bold">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
-        </div>
-        <div class="d-flex justify-content-center align-items-center mt-5">
-          <div>
-            <p class="h5 header_text text-light">探索Greenery吧~</p>
-            <p class="text-center h5 drop text-light">V</p>
+      <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex justify-center ai:center m-0 p-5">
+        <div class="container">
+          <div class="text-light text_header">
+            <h1 class="display-5 font-weight-bold text-center">綠藝盎然 Greenery</h1>
+            <p class="lead text-center font-weight-bold">環保，綠的代名詞。跟我們一起愛護地球，讓生活綠藝盎然!</p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center mt-5">
+            <div>
+              <p class="h5 header_text text-light">探索Greenery吧~</p>
+              <p class="text-center h5 drop text-light">V</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       <div class="toTop bg-light p-2 rounded-circle">
         <a href="#searchBar"><i class="fas fa-arrow-up"></i></a>
       </div>
@@ -54,20 +54,32 @@
           <h2>防蟲專區</h2>
           <h2 class="subtitle">BugPrevent</h2>
         </div>
-        <VueSlickCarousel v-bind="settings" v-if="products.length">
-          <div class="cards" v-for="(item) in bugData" :key="item.id">
-            <div class="card" v-if="item.category">
-              <router-link to="/shop">
-                <img :src="item.imageUrl" alt="">
-              </router-link>
-              <div class="text">
-                <h2>{{ item.title }}</h2>
-                <h3 class="middel">{{ item.content }}</h3>
-                <h3>NT${{item.origin_price}}</h3>
-              </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 py:2rem!
+            {f:50}_.slick-prev:before
+            {f:50}_.slick-next:before
+            {right:-80}_.slick-next
+            {left:-80}_.slick-prev
+            {bottom:-35}_.slick-dots
+            ">
+              <VueSlickCarousel v-bind="settings" v-if="products.length">
+                <div class="cards" v-for="(item) in bugData" :key="item.id">
+                  <div class="card" v-if="item.category">
+                    <router-link to="/shop">
+                      <img :src="item.imageUrl" alt="">
+                    </router-link>
+                    <div class="text">
+                      <h2>{{ item.title }}</h2>
+                      <h3 class="middel">{{ item.content }}</h3>
+                      <h3>NT${{item.origin_price}}</h3>
+                    </div>
+                  </div>
+                </div>
+              </VueSlickCarousel>
             </div>
           </div>
-        </VueSlickCarousel>
+        </div>
       </section>
       <section id="nature">
         <div class="sky">
@@ -100,32 +112,53 @@
         </div>
       </section>
       <section id="danger">
-        <img src="@/assets/danger.png" alt="">
-        <h2 class="animated_slideToRight">現在，為滿足人類的需求，大肆的開發環境，造成環境汙染。</h2>
+        <div class="container">
+          <div class="row py:3rem!">
+            <div class="col-6">
+              <img class="max-w:450px! mx:auto! block" src="@/assets/danger-2.png" alt="">
+            </div>
+            <div class="col-6 flex jc:center ai:center">
+              <h2 class="animated_slideToRight">現在，為滿足人類的需求，大肆的開發環境，造成環境汙染。</h2>
+            </div>
+          </div>
+        </div>
       </section>
       <section id="example">
         <div class="title">
           <h2>環境的汙染</h2>
         </div>
-        <div class="content animated_slideToRight">
-          <img src="@/assets/forest.jpg" alt="">
-          <div class="text">
-            <h3>森林破壞</h3>
-            <p>人為因素的森林破壞包括森林採伐，人類引起森林火災，酸雨和引進的物種。也有自然因素可能會破壞森林，包括森林火災、昆蟲、疾病、天氣、物種之間的競爭等。</p>
+        <div class="container
+        {py:2rem}_.row
+        ">
+          <div class="row animated_slideToRight py:3rem!">
+            <div class="col-6 min-h:360 bg:center|/|cover|url('https://hk.on.cc/hk/bkn/cnt/intnews/20210114/photo/bkn-20210114054633617-0114_00992_001_01p.jpg?20210114122305')!">
+            </div>
+            <div class="col-6 flex jc:center ai:flex-end translate(-10%,5%)">
+              <div class="bg:#b98b0f! px:2rem! py:1rem! color:white! box-shadow:10|10|rgba(0,0,0,0.3)">
+                <h3>森林破壞</h3>
+                <p>人為因素的森林破壞包括森林採伐，人類引起森林火災，酸雨和引進的物種。也有自然因素可能會破壞森林，包括森林火災、昆蟲、疾病、天氣、物種之間的競爭等。</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="content animated_slideToRight">
-          <img src="@/assets/river.jpg" alt="">
-          <div class="text">
-            <h3>河川汙染</h3>
-            <p>水污染正在成為世界死亡和疾病的主要黑手，每天有14,000多人因此喪生。據估算，在印度每天約有580人死於水污染有關的疾病。中國水資源中約有九成被污染。</p>
+          <div class="row animated_slideToRight py:3rem!">
+            <div class="col-6 min-h:360 bg:center|/|cover|url('https://aqj.org.tw/sites/default/files/node/images/achievement/156150_445829225432123_100000151492509_1789481_490221836_n.jpg')!">
+            </div>
+            <div class="col-6 flex jc:center ai:flex-end translate(-10%,5%)">
+              <div class="bg:#b98b0f! px:2rem! py:1rem! color:white! box-shadow:10|10|rgba(0,0,0,0.3)">
+                <h3>河川汙染</h3>
+                <p>水污染正在成為世界死亡和疾病的主要黑手，每天有14,000多人因此喪生。據估算，在印度每天約有580人死於水污染有關的疾病。中國水資源中約有九成被污染。</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="content animated_slideToRight">
-          <img src="@/assets/air.jpg" alt="">
-          <div class="text">
-            <h3>空氣汙染</h3>
-            <p>空氣污染的一個重要風險因素是導致一系列健康問題，包括呼吸感染、心臟病、慢性阻塞性肺病、中風和肺癌。</p>
+          <div class="row animated_slideToRight py:3rem!">
+            <div class="col-6 min-h:360 bg:center|/|cover|url('https://www.greenpeace.org/static/planet4-taiwan-stateless/2020/02/eda4af85-gp0strnhz_medium_res-coal-fired-power-plant-in-the-rhenish-lignite-mining-area-1024x683.jpg')!">
+            </div>
+            <div class="col-6 flex jc:center ai:flex-end translate(-10%,5%)">
+              <div class="bg:#b98b0f! px:2rem! py:1rem! color:white! box-shadow:10|10|rgba(0,0,0,0.3)">
+                <h3>空氣汙染</h3>
+                <p>空氣污染的一個重要風險因素是導致一系列健康問題，包括呼吸感染、心臟病、慢性阻塞性肺病、中風和肺癌。</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -162,33 +195,44 @@
           <h3>讓我們實驗給您看!</h3>
           <hr>
         </div>
-        <div class="contents">
-          <div class="content">
-            <div class="img animated_showUp">
-              <img src="@/assets/copperion_test.jpg" alt="">
+        <div class="container py:2rem!">
+          <div class="row
+          {bg:#faf5e4;r:10;p:1rem;my:1rem}_.content_.text
+          {r:10;overflow:hidden}_img
+          {my:1rem!}_h2
+          ">
+            <div class="col-12 col-md-4">
+              <div class="content">
+                <div class="img animated_showUp">
+                  <img src="@/assets/copperion_test.jpg" alt="">
+                </div>
+                <div class="text animated_fadeIn">
+                  <h2>培養皿測試</h2>
+                  <p>在培養皿中放入銅離子母片和沒有放入銅離子母片做比較，有銅離子的話，培養皿裡面幾乎沒有受到細菌汙染!</p>
+                </div>
+              </div>
             </div>
-            
-            <div class="text animated_fadeIn">
-              <h2>培養皿測試</h2>
-              <p>在培養皿中放入銅離子母片和沒有放入銅離子母片做比較，有銅離子的話，培養皿裡面幾乎沒有受到細菌汙染!</p>
+            <div class="col-12 col-md-4">
+              <div class="content">
+                <div class="img animated_showUp">
+                  <img src="@/assets/no_copperion.jpg" alt="">
+                </div>
+                <div class="text animated_fadeIn">
+                  <h2>未加入銅離子</h2>
+                  <p>未加入銅離子的商品放在水中，時間久了就會褪色，被細菌汙染，變得醜醜的，耐用性降低很多!</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="content">
-            <div class="img animated_showUp">
-              <img src="@/assets/no_copperion.jpg" alt="">
-            </div>
-            <div class="text animated_fadeIn">
-              <h2>未加入銅離子</h2>
-              <p>未加入銅離子的商品放在水中，時間久了就會褪色，被細菌汙染，變得醜醜的，耐用性降低很多!</p>
-            </div>
-          </div>
-          <div class="content">
-            <div class="img animated_showUp">
-              <img src="@/assets/copperion.jpg" alt="">
-            </div>
-            <div class="text animated_fadeIn">
-              <h2>加入銅離子後</h2>
-              <p>加入銅離子的商品，不但沒受到細菌汙染，而且還不會退色，保持商品的功能與外觀，並且提升耐用性!  </p>
+            <div class="col-12 col-md-4">
+              <div class="content">
+                <div class="img animated_showUp">
+                  <img src="@/assets/copperion.jpg" alt="">
+                </div>
+                <div class="text animated_fadeIn">
+                  <h2>加入銅離子後</h2>
+                  <p>加入銅離子的商品，不但沒受到細菌汙染，而且還不會退色，保持商品的功能與外觀，並且提升耐用性!  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -238,7 +282,7 @@
   background-image: url('../../assets/header.jpg')
   background-size: cover
   background-position: center center
-  min-height: 400px
+  min-height: 600px
 
 /* 購物車按鈕 */
 .btn-cart 
@@ -300,16 +344,37 @@ export default {
   data(){
     return {
       settings:{
-        slidesToShow: 2,
+        slidesToShow: 3,
         autoplay: true,
-        arrows: false,
+
         dots: true,
         responsive: [
           {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 3,
+              arrows: true,
+            }
+          },
+          {
             breakpoint: 768,
             settings: {
+              slidesToShow: 2,
+              arrows: true,
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
               slidesToShow: 1,
-              autoplay: true,
+              arrows: false,
+            }
+          },
+          {
+            breakpoint: 414,
+            settings: {
+              slidesToShow: 1,
+              arrows: false,
             }
           }
         ]
